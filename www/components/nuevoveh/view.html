@@ -1,0 +1,647 @@
+
+
+<div data-role="view" data-title="View" data-layout="main" data-model="app.nuevoveh" data-show="app.nuevoveh.onShow" data-after-show="app.nuevoveh.afterShow" id="nuevovehScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-taxi' aria-hidden='true'></i>  <span data-bind="text: strings.nuevoveh.title" style="font-weight:bold"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a id="volver_ent" data-align="right" class="fa fa-reply" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+    <!-- START_CUSTOM_CODE_nuevoveh -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <div id="dialogMailEV"></div>
+
+
+    <header data-role="header" id="headEV">
+
+
+        <div id="tablaEntVeh"></div>
+
+
+        <!------------------------------------------------------------------------------------------------>
+        <div id="2tablaUsuEntE1" style="display:none">
+            <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="vertical-align:top">
+                        <p><label class="w3-text-red"><b>Fecha</b></label></p>
+                        <p><input id="2datepickerE1" title="datepicker" style='max-width:150px' /></p>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td style="vertical-align:top">
+                        <p><label class="w3-text-red"><b>Usuario</b></label></p>
+                        <p><div id="2divListaUsuEntregaE1"></div></p>
+                        <p>
+                            <div id="divColor01"></div>
+                        </p>
+</td>
+                </tr>
+
+
+
+            </table>
+
+         
+
+</div>
+
+        <!------------------------------------------------------------------------------------------------>
+
+
+    </header>
+    <table align="center" width="95%" border="0" cellspacing="0" cellpadding="0" id="tablaEntregaDet" style="display:block">
+        <tr>
+            <td>
+                <div id="gridListaEntrega" style="font-size:11px"></div>
+            </td>
+        </tr>
+    </table>
+    <div id="formEntrega" style="display:none">
+        <div class="fondoRojoLogin">
+            <div scrool>
+                <div class="container">
+                    <div class="form-group">
+
+                        <!--vip-->
+                        <table align="center" cellpadding="0" cellspacing="0" width="300">
+                            <tr><td align="center"><b><label id="vip_ev"></label><input id="txt_vip_ev" type="hidden" value="" /></b></td></tr>
+                        </table>
+
+                        <div id="tabstripEV">
+                            <ul>
+                                <li id="li_ev1" class="k-state-active">
+                                    <i class="fa fa-car fa-lg" aria-hidden="true" title="Datos del Vehiculo"></i>
+                                </li>
+
+                                <li id="liev2" style="display:initial">
+                                    <i class="fa fa-dollar fa-lg" aria-hidden="true" title="Datos Factura"></i>
+                                </li>
+
+                                <li id="li_ev4" style="display:initial">
+                                    <i class="fa fa-user fa-lg" aria-hidden="true" title="Datos Recibe"></i>
+                                </li>
+
+                                <li id="li_ev6" style="display:initial">
+                                    <i class="fa fa-cogs fa-lg" aria-hidden="true" title="Accesorios Facturados"></i>
+                                </li>
+
+
+                                <li id="li_ev5" style="display:initial">
+                                    <i class="fa fa-wrench fa-lg" aria-hidden="true" title="Partes Moviles"></i>
+                                </li>
+
+                                <li id="li_ev8" style="display:initial">
+                                    <i class="fa fa-camera fa-lg" aria-hidden="true" title="Captura"></i>
+                                </li>
+
+                                <li id="liev3" style="display:initial">
+                                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" title="Formulario"></i>
+                                </li>
+<!-- 
+
+                                <li id="li_ev8" style="display:initial">
+                                    <i class="fa fa-camera fa-lg" aria-hidden="true" title="Captura"></i>
+                                </li> -->
+                            </ul>
+                            <div>
+                                <p>
+
+                                    <legend id="lydEntrega0" style="min-width:667px;"> DATOS VEH&#205;CULO A ENTREGAR</legend>
+
+                                </p>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        VIN
+                                                    </b>
+                                                </label><input id="ev_vin" type="text" class="w3-input textos" readonly />
+                                                <input id="ev_numfac" type="hidden" />
+                                                <input id="ev_vh26" type="hidden" />
+                                                <input id="ev_secuencia_detalle" type="hidden" />
+                                                <input id="ev_estado_entrega" type="hidden" />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Modelo
+                                                    </b>
+                                                </label><input id="ev_nombre_modelo" type="text" class="w3-input textos" readonly />
+
+                                                <input id="otadjuntosEV" type="hidden" value="" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Color
+                                                    </b>
+                                                </label><input id="ev_color" type="text" class="w3-input textos" readonly />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        A&#241;o
+                                                    </b>
+                                                </label><input id="ev_anio" type="text" class="w3-input textos" readonly />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Placa
+                                                    </b>
+                                                </label><input id="ev_placa" type="text" class="w3-input textos" readonly />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red" id="lblConfpl_ev">
+                                                    <b>
+                                                        Confirmar Placa
+                                                    </b>
+                                                </label><input id="ev_placa_conf" type="text" class="w3-input w3-border textos" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Dispone de Dispositivo Satelital ?
+                                                    </b>
+                                                </label>
+                                                <div id="cboIMEI"></div>
+                                            </p>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red" id="lblIMEI" style="display:none">
+                                                    <b>
+                                                        No. IMEI
+                                                    </b>
+                                                </label>
+                                                <input id="ev_imei" type="number" name="IMEI" class="w3-input w3-border textos" style="display: none; text-transform: uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red" id="lblIMEI_conf" style="display: none">
+                                                    <b>
+                                                        Confirmar No. IMEI
+                                                    </b>
+                                                </label>
+                                                <input id="ev_imei_conf" type="number" name="IMEI_conf" class="w3-input w3-border textos" style="display:none; text-transform: uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p>
+                                    <legend id="lydEntrega1">
+                                        DATOS GENERALES ENTREGA
+                                    </legend>
+                                </p>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        En la ciudad
+                                                    </b>
+                                                </label><input id="ev_ciudad" type="text" class="w3-input textos" readonly />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="bottom">
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Fecha
+                                                    </b>
+                                                </label><input id="ev_yyyy" type="text" class="w3-input textos" style="max-width:100px" readonly />
+                                            </p>
+                                        </td>
+                                        <td valign="bottom">
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Hora
+                                                    </b>
+                                                </label><input id="ev_hh" type="text" class="w3-input textos" style="max-width:40px" readonly />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div>
+                                <p>
+
+                                    <legend id="lydEntrega2" style="min-width:667px;"> DATOS FACTURA</legend>
+
+                                </p>
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Estado
+                                                    </b>
+                                                </label><input id="ev_estado" type="text" class="w3-input textos" readonly />
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>N&#250;mero Factura</b></label>
+                                                <input id="num_factura_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Fecha de la Factura</b></label>
+                                                <input id="fecha_factura_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Tipo Persona</b></label>
+                                                <input id="persona_tipo_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Tipo ID</b></label>
+                                                <input id="persona_tipo_id_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>No.</b></label>
+                                                <input id="persona_numero_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>ID</b></label>
+                                                <input id="identifica_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td colspan="2">
+                                            <input id="persona_nombre_ev" type="hidden">
+                                            <p><label class="w3-text-red"><b>Apellidos / Nombres / Raz&oacute;n Social</b></label><input id="persona_nom1_ev" type="text" class="w3-input textos" readonly></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Pa&iacutes</b></label>
+                                                <input id="persona_pais_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td colspan="2">
+                                            <p>
+                                                <label class="w3-text-red"><b>Ciudad</b></label>
+                                                <input id="persona_ciudad_ev" type="text" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Calle</b></label>
+                                                <input id="persona_direc_ev" type="text" class="w3-input textos" readonly>
+                                                <input id="calle_ev" type="hidden" class="w3-input textos" readonly>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p><label class="w3-text-red"><b>No. Calle</b></label><input id="numero_calle_ev" type="text" class="w3-input textos" readonly></p>
+                                        </td>
+                                        <td>
+                                            <p><label class="w3-text-red"><b>Intersecci&oacuten</b></label><input id="calle_interseccion_ev" type="text" class="w3-input textos" readonly></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p><label class="w3-text-red"><b>Celular</b></label><input id="celular_ev" type="number" class="w3-input textos" readonly></p>
+                                        </td>
+                                        <td>
+                                            <p><label class="w3-text-red"><b>Email</b></label><input id="email_ev" type="text" class="w3-input textos" readonly></p>
+                                        </td>
+                                        <td >
+                                            <p><label class="w3-text-red"><b>Tiene Promoción</b></label><input id="cuponesEVN" type="text" class="w3-input textos" readonly ></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div>
+                                <p>
+
+                                    <legend id="lydEntrega3" style="min-width:667px;"> QUIEN RECIBE</legend>
+
+                                </p>
+
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                    <tr  style="height:50px">
+                                        <td><p>Cliente</p></td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="radio" id="rbCliente" name="rdbQuien" value="C" onclick="copiaCliente();">
+                                        </td>
+                                        <td>&nbsp;&nbsp;</td>
+
+                                        <td><p>Otros</p></td>
+                                        <td><input type="radio" id="rbOtro" name="rdbQuien" value="O" onclick="copiaCliente();" checked></td>
+                                    </tr>
+
+
+                                </table>
+
+
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>ID</b></label>
+                                                <input type="text" id="ev_identifica_cliente" placeholder="CEDULA O RUC" onchange="ConsultarClienteEV(this.value)" class="w3-input w3-border textos">
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label id="lbl_ev_relacionev" class="w3-text-red"><b>Relaci&#243;n</b></label>
+                                                <input type="text" id="ev_relacionev" class="w3-input w3-border textos" />
+
+                                                <input type='text' id='preg' class='w3-input w3-border textos' style="display:none" />
+
+                                            </p>
+                                        </td>
+                                        <td>&nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Tipo Persona</b></label>
+                                                <div id="ev_divcbotpers"></div>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Tipo ID</b></label>
+                                                <div id="ev_divcbotid"></div>
+                                            </p>
+                                        </td>
+                                        <td>&nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div id="divcboEVNacionalidad"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <p>
+                                                <label class="w3-text-red"><b>Nombre 1</b></label>
+                                                <input type="text" id="ev_nombres" class="w3-input w3-border textos" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <p>
+                                                <label class="w3-text-red"><b>Nombre 2</b></label>
+                                                <input type="text" id="ev_nombres_2" class="w3-input w3-border textos" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <p>
+                                                <label class="w3-text-red"><b>Apellido 1 / Raz&#243;n Social</b></label>
+                                                <input type="text" id="ev_apellidos" class="w3-input w3-border textos" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <p>
+                                                <label class="w3-text-red"><b>Apellido 2</b></label>
+                                                <input type="text" id="ev_apellidos_2" class="w3-input w3-border textos" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Tel&eacute;fono</b></label>
+                                                <input name="ev_telefono_cliente" type="number" id="ev_telefono_cliente" class="w3-input w3-border textos" maxlength=9>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red"><b>Celular</b></label>
+                                                <input name="ev_celular_cliente" type="number" id="ev_celular_cliente" class="w3-input w3-border textos">
+                                            </p>
+                                        </td>
+                                        <td>&nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <p>
+                                                <label class="w3-text-red"><b>Email</b></label>
+                                                <input name="ev_email_cliente" type="text" id="ev_email_cliente" size="55" class="w3-input w3-border textos">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div>
+                                <p>
+
+                                    <legend id="lydEntrega4" style="min-width:667px;"> ACCESORIOS FACTURADO</legend>
+
+
+
+                                </p>
+                            </div>
+
+                            <div>
+                                <div id="divPartMov"></div>
+
+                                <div style="min-width:667px;visibility:hidden"></div>
+                                <div id="autoKia">
+                                    <center>
+                                    <img id="autokia1" src="images/partesauto.png" style="border:3px solid white">
+                                    </center>
+                                </div>
+
+                            </div>
+                            <div>
+                                <p>
+
+                                    <legend id="lydEntrega5" style="min-width:667px;"> CAPTURAR IMAGEN</legend>
+
+
+
+                                </p>
+                                <div id="listaVideo_ev" style="width:100%"></div>
+                                <div id="videosOT_ev" style="width:100%"></div>
+                                <div id="playVideo_ev" style="width:100%"></div>
+                                <input id="fileOT_ev" name="fileOT_ev" type="hidden">
+                            </div>
+                            <div>
+                                <div id="divFormEV"></div>
+                                <div id="divIVPM"></div>
+                                <br />
+                                <table width="100%">
+                                        <tr>
+                                                <td>
+                                                    <p>
+                                                        <label class="w3-text-red">
+                                                            <b>
+                                                                Cupon Desde
+                                                            </b>
+                                                        </label>
+                                                        <input type="number" name="obsEV" id="cuponD" style="width: 50%" class="k-textbox" ></INP>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <label class="w3-text-red">
+                                                            <b>
+                                                                Cupon Hasta
+                                                            </b>
+                                                        </label>
+                                                        <input type="number" name="obsEV" id="cuponH" class="k-textbox" ></INP>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                </table>
+                                <table width="100%">
+                                    <tr>
+                                        <td colspan="2">
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        Comentarios, Recomendaciones u Observaciones
+                                                    </b>
+                                                </label>
+                                                <textarea name="obsEV" id="obsEV" class="k-textbox" style="height: 80px; width: 100%" maxlength="300"></textarea>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <label class="w3-text-red">
+                                                    <b>
+                                                        &#191; Cu&#225;n satisfecho esta con el servicio de entrega del asesor que le atendi&#243; ?
+                                                    </b>
+                                                </label>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <select id="cboEncEV" class="w3-input w3-border textos">
+                                                    <option value="0">seleccione</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+
+                            <!-- <div>
+                                <p>
+
+                                    <legend style="min-width:667px;"> CAPTURAR IMAGEN</legend>
+
+
+
+                                </p>
+                                <div id="listaVideo_ev" style="width:100%"></div>
+                                <div id="videosOT_ev" style="width:100%"></div>
+                                <div id="playVideo_ev" style="width:100%"></div>
+                                <input id="fileOT_ev" name="fileOT_ev" type="hidden">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divExplica"></div>
+
+    <!--RRP agenda-->
+    <!--<div class='mycalEnt'></div>-->
+
+    <div id="2agendaEntregaE1"></div>
+
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterEntrega"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    <!-- END_CUSTOM_CODE_nuevoveh -->
+</div>
+<style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 80vh !important;
+}
+</style>
+

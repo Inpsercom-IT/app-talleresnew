@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<div data-role="view" data-title="CERTIFICA VEHICULO" data-layout="main" data-model="app.certifica" data-show="app.certifica.onShow"
+     data-after-show="app.certifica.afterShow" id="certificaScreen" class="screen" style="position :relative;">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <span data-role="view-title"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+            <div id="navigation-container-more" style="display: none">
+            </div>
+        </div>
+    </header>
+    <div class="fondoRojoLogin">
+        <div class="container">
+            <div class="form-group">
+                <br/>
+                <div id="gridCertifica" style="font-size:11px; display:initial;"></div>
+            </div>
+        </div>
+    </div>
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnGuardaInfoCert">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+</div>

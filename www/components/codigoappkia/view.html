@@ -1,0 +1,58 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.codigoappkia" data-show="app.codigoappkia.onShow" data-after-show="app.codigoappkia.afterShow" id="codigoappkiaScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-wrench' aria-hidden='true'></i>  <span data-bind="text: strings.codigoappkia.title" style="font-weight:bold"></span>
+
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    Puede buscar por: cédula, vin, mail 
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+    </center>
+    
+        <table align="center" cellpadding="0" cellspacing="0" width="300">
+            
+            <tr height="40px" id="trID" style="display:initial">
+                <td>
+                    <input class="w3-input w3-border textos2" id="mailceduVIN" name="mailceduVIN" type="text" placeholder="Cédula, Vin, mail" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" value="">
+                </td>
+                <td align="center">
+                    <a id="btnBusquedas0" class="w3-btn primary" aria-label="Buscar" onclick="buscarPlacaVIN(document.getElementById('mailceduVIN').value);">
+                        <i id="icnOT0" class="fa fa-search" aria-hidden="true"></i> Buscar
+                    </a>
+                </td>
+                <td>
+                    <a id="scanButton" onclick="scan();" class="w3-btn primary textos51" aria-label="Lector">
+                    <i class="fa fa-barcode" aria-hidden="true"></i>&nbsp;Lector</a>
+                </td>
+            </tr>
+        </table>
+    <br/>
+    <table>
+        <tr>
+            <td>
+                <div id="gridListaCodigos123" style="font-size:11px; width:1200px"></div>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+<style>
+    .k-overflow-container .k-primary, .k-primary {
+background-color: unset;
+border-color: unset;
+}
+.k-overflow-container .k-primary, .k-primary:focus {
+background-color: unset;
+border-color: unset;
+}
+</style>

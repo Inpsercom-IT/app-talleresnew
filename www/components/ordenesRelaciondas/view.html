@@ -1,0 +1,43 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.ordenesRel" data-show="app.ordenesRel.onShow" data-after-show="app.ordenesRel.afterShow" id="ordenesRelScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <!--<span data-bind="text: strings.admOt.title"></span>-->
+            <i class='fa fa-wrench' aria-hidden='true'></i>  <span data-bind="text: strings.ordenesRelaciondas.title" style="font-weight:bold"></span>
+            <h1><b><span id="numOTREL" class="km-view-subtitle"></span></b></h1>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a data-align="right" class="fa fa-reply" onclick="volverOTREL()" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_admOt -->
+     <div id="dialogREL"></div>
+    <!-- <div id="dialogMN"></div>
+    <div id="dialogMNCE"></div>
+    <div id="dialogEntVeh"></div> -->
+
+    <header data-role="header">
+        <div id="tablaOTREL"></div>
+    </header>
+    <table align="center"  border="0" cellspacing="0" cellpadding="0" id="tablaOTRelacionada" style="display:block">
+        <tr>
+            <td>
+                <!--<div id="gridListaOrdenes" style="font-size:11px"></div>-->
+                <div id="gridListaOrdenesREL" style="font-size:11px;"></div>
+
+            </td>
+        </tr>
+    </table>
+    <!-- <button id="showSelection">Show selected IDs</button> -->
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterOTREL"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+    <!-- END_CUSTOM_CODE_admOt -->
+</div>

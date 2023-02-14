@@ -1,0 +1,159 @@
+<div data-role="view" data-title="view" data-layout="main" data-model="app.reporteCCl" data-show="app.reporteCCl.onShow" data-after-show="app.reporteCCl.afterShow" id="reporteCClScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-wrench' aria-hidden='true'></i>  <span data-bind="text: strings.reporteControlCliente.title" style="font-weight:bold"></span>
+            <h1><b><span id="NoOrdenCCL" class="km-view-subtitle"></span></b></h1>
+            <!--<span data-bind="text: strings.reporte1.title" style="font-weight:bold"></span>-->
+            <!--<a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>-->
+            <a data-align="right" class="fa fa-reply" onclick="volverCCL()" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+    
+    <div id="dialogfirmaDigitalOTJT"></div>
+    <div id="dialogfirmaOTJT"></div>
+    <div id="tabstripCCL" style="display: block">
+        <ul>
+            <li id="liVideoRCCL" style="display:initial">
+                <label style="display:none">VI</label>
+                <i id="l1" class="fa fa-play-circle-o fa-lg" aria-hidden="true" title="Formulario Control de Calidad"></i>
+            </li>
+            <li id="liDatosRCCL" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l2" class="fa fa-book" aria-hidden="true" title="Datos OT"></i>
+            </li>
+            <li id="liActividadesRCCL" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l3" class="fa fa-bars" aria-hidden="true" title="Actividades"></i>
+            </li>
+            <li id="liDetalleRCCL" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l4" class="fa fa-calendar-check-o" aria-hidden="true" title="Detalle OT"></i>
+            </li>
+            <li id="liFirmaASRCCL" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l5" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" title="Firma"></i>
+            </li>
+        </ul>
+        <div>
+            <p>
+                <legend style="min-width:667px;">FORMULARIO CONTROL DE CALIDAD</legend>
+            </p>
+            <table align="center" width="95%">
+
+                <tr>
+                    <td>
+                        <div id="descSMS_1RCCL"></div>
+                    </td>
+                </tr>
+        
+            </table>
+            <p>
+                <label class="w3-text-red">
+                    <b>
+                        Observacion
+                    </b>
+                </label>
+                <textarea name="observacionCCL" rows="2" cols="30" id="observacionCCL" data-bind="value: observacionCCL" placeholder="Observacion Control Calidad" class="w3-input w3-border textos" maxlength="300"></textarea>
+            </p>
+            <br/>
+        </div>
+        <div>
+            <p>
+                <legend style="min-width:667px;">DATOS DE OT</legend>
+            </p>
+            <table border="0" width="100%">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="datosOT"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p>
+                <legend style="min-width:667px;">ACTIVIDADES</legend>
+            </p>
+            <table border="0" width="100%">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="actividadesOTCCA"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p>
+                <legend style="min-width:667px;">DETALLE DE OT</legend>
+            </p>
+            <table align="center" border="0">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="imgFirmaOTCCA"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <p>
+                <legend style="min-width:667px;">FIRMA</legend>
+            </p>
+            <!--FIRMA DIGITAL ASESOR------------------------------------------------------->
+            <br />
+            <p>
+               <div id="titFirmaPregCCLJT"></div>  <center><button id="confirmFirmaOTCCLJT" class="w3-btn w3-red">SI</button> &nbsp; <button id="cancelFirmaOTCCLJT" class="w3-btn w3-red">NO</button>  </center>
+            </p>
+            <table align="center" border="0">
+                <tr>
+                    <td>
+                        <div id="imgFirmaOTCCLJT"></div>
+                    </td>
+                </tr>
+            </table>
+            <input id="firmaOTCCLJT" type="hidden" value="" />
+            <input id="firmaGrafCCLJT" type="hidden" value="" />
+            <!--FIRMA DIGITAL-->
+        </div>
+    </div>
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterCCL"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    <!-- END_CUSTOM_CODE_home -->
+</div>
+
+<style>
+    .circulo {
+     width: 50px;
+     height: 50px;
+     -moz-border-radius: 25%;
+     -webkit-border-radius: 25%;
+     border-radius: 25%;
+     background: #5cb85c;
+}
+
+</style>
+<!-- <style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 100vh !important;
+}
+</style> -->

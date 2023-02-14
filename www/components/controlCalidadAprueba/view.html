@@ -1,0 +1,38 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.ccAprueba" data-show="app.ccAprueba.onShow" data-after-show="app.ccAprueba.afterShow" id="ccApruebaScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+
+            <i class='fa fa-list-alt' aria-hidden='true'></i>
+            <span data-bind="text: strings.controlCalidadAprueba.title" style="font-weight:bold"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a id="volver_1" data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+    <div id="dialogEICCA"></div>
+    <div id="dialogEntVehCCA"></div>
+
+
+    <header data-role="header">
+        <div id="tablaOT2CCA"></div>
+    </header>
+    <table align="center" width="2000px" border="0" cellspacing="0" cellpadding="0" id="tablaOTDetalleCCA" style="display:block">
+        <tr>
+            <td>
+                <!--<div id="gridListaOrdenes" style="font-size:11px"></div>-->
+                <div id="gridListaOrdenesCCA" style="font-size:11px; width:2000px"></div>
+
+            </td>
+        </tr>
+    </table>
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterOTCCA"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+</div>

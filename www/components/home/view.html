@@ -1,0 +1,43 @@
+<div data-role="view" data-title="text: strings.home.title" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow" id="homeScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <span data-bind="text: strings.home.title" style="font-weight:bold"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_home -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    
+
+    <div class="container">
+        <div class="item">
+
+            <div id="menuCboAgencia" style="display: block;">
+
+                <table align="center" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td align="center">
+
+                            <h1> <b>   <label class="w3-text-red" id="usuEmpresa2"></label> </b> </h1>
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="cboAgenciaUsu"></div>
+
+            </div>
+            
+        </div>
+        <!--MENU-->
+        <div id="menuPagInicio" style="display:block;"> 
+            <div id="global">
+                <div id="divItemMenuPrinc"></div>
+            </div>
+        </div>
+    </div>
+</div>

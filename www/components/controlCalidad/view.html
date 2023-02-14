@@ -1,0 +1,53 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.controlCalidad" data-show="app.controlCalidad.onShow" data-after-show="app.controlCalidad.afterShow" id="controlCalidadScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <!--<span data-bind="text: strings.controlCalidad.title"></span>-->
+            <i class='fa fa-wrench' aria-hidden='true'></i>  <span data-bind="text: strings.controlCalidad.title" style="font-weight:bold"></span>
+
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_controlCalidad -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <div id="dialogEICA"></div>
+    <div id="dialogEntVehCA"></div>
+
+
+    <header data-role="header">
+        <div id="tablaOT2CA"></div>
+    </header>
+
+
+
+    <!--<div id="tablaOTDetalle" style='overflow-x:scroll;overflow-y:hidden;width:100%;height:100%;display:block'>
+        <div id="gridListaOrdenes" style="font-size:11px; width:1100px"></div>
+    </div>-->
+
+    <!--<div id="gridListaOrdenes" style="font-size:11px; width:2000px"></div>-->
+
+    <table align="center" width="2000px" border="0" cellspacing="0" cellpadding="0" id="tablaOTDetalleCA" style="display:block">
+        <tr>
+            <td>
+                <!--<div id="gridListaOrdenes" style="font-size:11px"></div>-->
+                <div id="gridListaOrdenesCA" style="font-size:11px; width:2000px"></div>
+
+            </td>
+        </tr>
+    </table>
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterOTCA"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+    <!-- END_CUSTOM_CODE_controlCalidad -->
+</div>

@@ -1,0 +1,222 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.vin" data-show="app.vin.onShow" data-after-show="app.vin.afterShow" id="vinScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+
+            <i class='fa fa-list-alt' aria-hidden='true'></i>
+            <span data-bind="text: strings.vin.title" style="font-weight:bold"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a id="volver_1" data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_vin -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    
+              
+           
+    <div class="fondoRojoLogin">
+        <div scrool>
+            <div class="container">
+
+                <div class="form-group">
+
+                    <table align="center" border="0" cellspacing="0" cellpadding="0">
+                        <tr style="height:50px">
+                            <td><b><label>Marca</label>&nbsp;&nbsp;</b></td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="radio" id="rbMiMarca" name="rdbMarca" checked="checked" value="kia" onclick="vaciaVIN();">
+                            </td>
+                            <td>&nbsp;</td>
+                            <td><label id="lblKia"></label></td>
+                            <td>&nbsp;&nbsp;</td>
+
+                            <td><input type="radio" id="rbOtros" name="rdbMarca" value="otros" onclick="vaciaVIN();"></td>
+                            <td>&nbsp;</td>
+                            <td>Otros</td>
+                            <td>&nbsp;&nbsp;</td>
+
+                            <td>
+                                <input class="w3-input w3-border textos2" id="infVIN" name="infVIN" type="text" placeholder="VIN" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" value="">
+                            </td>
+
+                            <td>
+
+
+                                <button id="btnBuscarVin0" onclick="ConsultarVIN(document.getElementById('infVIN').value);" class="w3-btn"><i class="fa fa-search" aria-hidden="true"></i> BUSCAR</button>
+
+                            </td>
+
+
+                        </tr>
+
+
+                    </table>
+
+                    <div id="gridVIN2" style="font-size:11px; display:initial"></div>
+
+                    <div id="nuevoVin" style="font-size:11px; display:initial"></div>
+
+
+                        <div id="divInfoVIN" style="display:none">
+
+
+                    <div id="tabstripVIN">
+                        <ul>
+                            <li class="k-state-active">
+                                <i class="fa fa-car fa-lg" aria-hidden="true" title="Nuevo VIN"></i>
+                            </li>
+                        </ul>
+
+                        <div>
+                            <p>
+                                <legend id="lydVin0">Nuevo VIN</legend>
+
+                            </p>
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Chasis</b>
+                                </label>
+
+                                <!--<input type="text" id="chasis" placeholder="VIN" class="w3-input w3-border textos" maxlength="17" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" onchange="ConsultarVIN(this.value)">-->
+
+                                <input type="text" id="chasisRV" placeholder="VIN" class="w3-input w3-border textos" maxlength="17" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();">
+
+
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Marca</b>
+                                </label>
+                                <div id="divcboMarca"></div>
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Modelo</b>
+                                </label>
+                                <div id="divcboModelo"></div>
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Color</b>
+                                </label>
+                                <div id="divcboColor"></div>
+
+
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Tipo Auto</b>
+                                </label>
+                                <div id="divcboTipoAuto"></div>
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>A&ntilde;o Modelo</b>
+                                </label><input type="number" id="anio_modelo" class="w3-input w3-border textos" maxlength="4" onkeydown="limitText(this,4);" onkeyup="limitText(this,4);">
+
+
+
+
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Versi&oacute;n Motor</b>
+                                </label><input type="text" id="version_motor" class="w3-input w3-border textos">
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Tipo Transmisi&oacute;n</b>
+                                </label><input type="text" id="tipo_transmision" class="w3-input w3-border textos">
+                            </p>
+
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>Cilindraje</b>
+                                </label><input type="number" id="cilindraje" class="w3-input w3-border textos">
+                            </p>
+
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>C&oacute;digo Tracci&oacute;n</b>
+                                </label><input type="text" id="codigo_traccion" class="w3-input w3-border textos">
+                            </p>
+
+                            <table width="100%">
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>Tipo Producto</b>
+                                            </label><input type="text" id="tipo_producto" class="w3-input textos" value="VEHICULOS" readonly>
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>Estado</b>
+                                            </label><input type="text" id="estado" class="w3-input textos" value="TALLER" readonly>
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnGuardaInfoVin">
+                 
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+    <!-- END_CUSTOM_CODE_vin -->
+</div>
+<style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 100vh !important;
+}
+</style>

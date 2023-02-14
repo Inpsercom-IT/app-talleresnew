@@ -1,0 +1,243 @@
+<div data-role="view" data-title="view" data-layout="main" data-model="app.reporteCLC" data-show="app.reporteCLC.onShow" data-after-show="app.reporteCLC.afterShow" id="reporteCLCScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-wrench' aria-hidden='true'></i>  <span data-bind="text: strings.reporteClienteAprobado.title" style="font-weight:bold"></span>
+            <h1><b><span id="NoOrdenCLC" class="km-view-subtitle"></span></b></h1>
+            <!--<span data-bind="text: strings.reporte1.title" style="font-weight:bold"></span>-->
+            <!--<a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>-->
+            <a data-align="right" class="fa fa-reply" onclick="volverCLC()" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+    
+    <div id="dialogfirmaDigitalOTCLC"></div>
+    <div id="dialogfirmaOTCLC"></div>
+    <div id="dialogMailOT"></div>
+    <div id="tabstripCLC" style="display: block">
+        <ul>
+            <!-- <li id="liVideo" style="display:initial"> 
+                <label style="display:initial"></label>
+                <i id="l8" class="fa fa-play-circle-o fa-lg" aria-hidden="true" title="Formulario Control de Calidad"></i>
+            </li> -->
+            <li id="liDatosRCA" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="19" class="fa fa-book" aria-hidden="true" title="Datos OT"></i>
+            </li>
+            <li id="liActividadesRCA" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l1" class="fa fa-bars" aria-hidden="true" title="Actividades"></i>
+            </li>
+            <li id="liDetalleRCA" style="display:initial">
+                <label style="display:none">FI</label>
+                <i id="l2" class="fa fa-calendar-check-o" aria-hidden="true" title="Detalle OT"></i>
+            </li>
+            <li id="liVideoRCA" style="display:initial">
+                <label style="display:initial"></label>
+                <i id="l3" class="fa fa-play-circle-o fa-lg" aria-hidden="true" title="Formulario Control de Calidad"></i>
+            </li>
+            <li id="liEncuestaCENRCA" style="display:initial">
+                <label style="display:none">EN</label>
+                <i id="l4" class="fa fa-building-o" aria-hidden="true" title="Encuesta"></i>
+            </li>
+            <li id="liFirmaCENRCA" style="display:none">
+                <label style="display:none">FI</label>
+                <i id="l5" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" title="Firma"></i>
+            </li>
+        </ul>
+        <!-- <div>
+            <p>
+                <legend style="min-width:667px;">FORMULARIO CONTROL DE CALIDAD</legend>
+            </p>
+            <table align="center" width="95%">
+
+                <tr>
+                    <td>
+                        <div id="descSMS_1RCLC"></div>
+                    </td>
+                </tr>
+        
+            </table>
+            <p>
+                <label class="w3-text-red">
+                    <b>
+                        Observacion
+                    </b>
+                </label>
+                <textarea name="observacionCLC" rows="2" cols="30" id="observacionCLC" data-bind="value: observacionCLC" placeholder="Observacion Control Calidad" class="w3-input w3-border textos"></textarea>
+            </p>
+            <br/>
+        </div> -->
+        <div>
+            <p>
+                <legend id="lydReporte0" style="min-width:667px;">DATOS DE OT</legend>
+            </p>
+            <table border="0" width="100%">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="datosOT"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p>
+                <legend id="lydReporte1" style="min-width:667px;">ACTIVIDADES</legend>
+            </p>
+            <table border="0" width="100%">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="actividadesOT"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p>
+                <legend id="lydReporte2" style="min-width:667px;">DETALLE DE OT</legend>
+            </p>
+            <table align="center" border="0">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="imgFirmaOTCC"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <p>
+                <legend id="lydReporte3" style="min-width:667px;">FORMULARIO CONTROL DE CALIDAD</legend>
+            </p>
+            <!-- align="center" width="95%" -->
+            <table>
+
+                <tr>
+                    <td>
+                        <div id="descSMS_1RCLC"></div>
+                    </td>
+                </tr>
+        
+            </table>
+            <p>
+                <label class="w3-text-red">
+                    <b>
+                        Observacion
+                    </b>
+                </label>
+                <textarea name="observacionCLC" rows="2" cols="30" id="observacionCLC" data-bind="value: observacionCLC" placeholder="Observacion Control Calidad" class="w3-input w3-border textos" maxlength="300"></textarea>
+            </p>
+            <br/>
+        </div>
+        <div>
+            <p>
+                <legend id="lydReporte4" style="min-width:667px;">ENCUESTA</legend>
+            </p>
+            <table border="0">
+                <tr>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>&nbsp;&nbsp;<label></label></td>
+                    <td>
+                        <div id="encuestaOTCC"></div>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <label class="w3-text-red">
+                    <b>
+                        Observación Cliente
+                    </b>
+                </label>
+                <textarea name="observacionCCE" rows="2" cols="30" id="observacionCCE" data-bind="value: observacionCC" placeholder="Observacion Control Calidad Cliente" class="w3-input w3-border textos" maxlength="300"></textarea>
+            </p>
+            <br/>
+            <p>
+                <legend id="lydReporte5" style="min-width:667px;">FIRMA</legend>
+            </p>
+            <p>
+                <div id="titFirmaPregCLC"></div>  <center><button id="confirmFirmaOTCLC0" class="w3-btn" >SI</button> &nbsp; <button id="confirmFirmaOTCLC1" class="w3-btn">NO</button>  </center>
+             </p>
+             <table align="center" border="0">
+                 <tr>
+                     <td>
+                         <div id="imgFirmaOTCLC"></div>
+                     </td>
+                 </tr>
+             </table>
+             <input id="firmaOTCLC" type="hidden" value="" />
+             <input id="firmaGrafCLC" type="hidden" value="" />
+        </div>
+        <div>
+            <p>
+                <legend id="lydReporte6" style="min-width:667px;">FIRMA</legend>
+            </p>
+            <!--FIRMA DIGITAL------------------------------------------------------->
+            <br />
+            <!-- <p>
+               <div id="titFirmaPregCLC"></div>  <center><button id="confirmFirmaOTCLC" class="w3-btn w3-red" >SI</button> &nbsp; <button id="cancelFirmaOTCLC" class="w3-btn w3-red">NO</button>  </center>
+            </p>
+            <table align="center" border="0">
+                <tr>
+                    <td>
+                        <div id="imgFirmaOTCLC"></div>
+                    </td>
+                </tr>
+            </table>
+            <input id="firmaOTCLC" type="hidden" value="" />
+            <input id="firmaGrafCLC" type="hidden" value="" /> -->
+            <!--FIRMA DIGITAL-->
+        </div>
+    </div>
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterCLC"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    <!-- END_CUSTOM_CODE_home -->
+</div>
+
+<style>
+    .circulo {
+     width: 50px;
+     height: 50px;
+     -moz-border-radius: 25%;
+     -webkit-border-radius: 25%;
+     border-radius: 25%;
+     background: #5cb85c;
+    }
+    .myTableBg2 { 
+    width: 100%;
+    text-align: left;
+    background-color: rgb(13, 88, 6);
+    }
+    td {
+        border:hidden;
+    }
+    table {
+        border: 1px solid #0000FF;
+    }
+    /* table td {
+  border: 1px solid #000;
+  text-align: left;
+  padding: 5px;
+  
+  height: 0px;
+} */
+</style>
+<style>
+.k-overflow-container .k-primary, .k-primary {
+    background-color: unset;
+    border-color: unset;
+    }
+    .k-overflow-container .k-primary, .k-primary:focus {
+    background-color: unset;
+    border-color: unset;
+    }
+</style>

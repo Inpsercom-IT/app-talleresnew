@@ -1,0 +1,512 @@
+<div
+  data-role="view"
+  data-title="View"
+  data-layout="main"
+  data-model="app.vista"
+  data-show="app.vista.onShow"
+  data-after-show="app.vista.afterShow"
+  id="vistaScreen"
+  class="screen"
+>
+  <header data-role="header">
+    <div data-role="navbar" class="header-text">
+      <i class="fa fa-forward" aria-hidden="true"></i>
+      <span
+        data-bind="text: strings.vista.title"
+        style="font-weight: bold"
+      ></span>
+      <a
+        data-role="button"
+        href="#appDrawer"
+        data-rel="drawer"
+        data-align="left"
+        data-icon="drawer-button"
+      ></a>
+      <a
+        data-align="right"
+        class="fa fa-reply"
+        href="components/home/view.html"
+        aria-hidden="true"
+        data-role="button"
+      ></a>
+    </div>
+  </header>
+
+  <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+  <header data-role="header">
+    <table align="center" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <input
+            name="vin"
+            placeholder="VIN"
+            type="text"
+            id="vinSeguimiento"
+            class="w3-input w3-border textos"
+            style="width: 200px; text-transform: uppercase"
+            onkeyup="validarVIN(this.value)"
+            onkeyup="javascript:this.value=this.value.toUpperCase();"
+          />
+        </td>
+        <td>
+          <button id="btnVistaBuscar0" onclick="BuscarSeguimiento();" class="w3-btn">
+            <i id="icnVistaBuscar0" class="fa fa-search" aria-hidden="true"></i> BUSCAR
+          </button>
+        </td>
+      </tr>
+    </table>
+    <div id="divControlesSeg" style="display: initial" class="targetSeg">
+      <table
+        align="center"
+        border="0"
+        cellspacing="0"
+        cellpadding="0"
+        width="100%"
+      >
+        <tr>
+          <!-- <td>
+                        <p>
+                            <label class='w3-text-red'><b>Tipo de Registro</b></label>
+                        </p>
+                        <p>
+                            <div id="cboTipoRegistroSvh" style="font-size:11px"></div>
+                        </p>
+                    </td> -->
+          <td>
+            <p>
+              <label class="w3-text-red"><b>Con fecha</b></label>
+            </p>
+            <p>
+              <input type="checkbox" id="conFecha" />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>Fecha Factura Inicio</b></label>
+            </p>
+            <p>
+              <input
+                id="dpInicioSeg"
+                value="01-01-1900"
+                style="max-width: 120px"
+              />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>Fecha Factura Fin</b></label>
+            </p>
+            <p>
+              <input
+                id="dpFinSeg"
+                value="01-10-2017"
+                style="max-width: 120px"
+              />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>N&#186; Factura</b></label>
+            </p>
+            <p>
+              <input
+                name="numeroFactura"
+                onkeypress="handleMask(event, '999-999-999999999')"
+                size="40"
+                type="text"
+                id="facturaSeguimiento"
+                class="w3-input w3-border textos"
+                style="width: 150px"
+              />
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>N&#186; Cliente</b></label>
+            </p>
+            <p>
+              <input
+                name="numeroClienteSeguimiento"
+                type="number"
+                id="numeroClienteSeguimiento"
+                class="w3-input w3-border textos"
+                style="max-width: 120px"
+              />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>Identificación</b></label>
+            </p>
+            <p>
+              <input
+                name="vin"
+                type="text"
+                id="identificacionClienteSeguimiento"
+                class="w3-input w3-border textos"
+                style="width: 120px; text-transform: uppercase"
+                onkeyup="javascript:this.value=this.value.toUpperCase();"
+              />
+            </p>
+          </td>
+          <td>
+            <p>
+              <label class="w3-text-red"><b>Nombre Cliente</b></label>
+            </p>
+            <p>
+              <input
+                name="nombreClienteSeguimiento"
+                type="text"
+                id="nombreClienteSeguimiento"
+                class="w3-input w3-border textos"
+                style="width: 180px; text-transform: uppercase"
+                onkeyup="javascript:this.value=this.value.toUpperCase();"
+              />
+            </p>
+          </td>
+          <!--  <td><p>&nbsp;</p>
+            <p>
+
+
+             <button class='w3-btn w3-red' id='mostrarSeg' style='display:none'>
+                <i class='fa fa-angle-double-down' aria-hidden='true'></i>
+               </button>
+
+               <button class='w3-btn w3-red' id='ocultarSeg'>
+                <i class='fa fa-angle-double-up' aria-hidden='true'></i>
+               </button>
+
+            </p></td> -->
+        </tr>
+      </table>
+    </div>
+    <div
+      id="gridSeguimientoInicial"
+      style="font-size: 11px; display: none"
+    ></div>
+  </header>
+  <!-- <div class="fondoRojoLogin">
+        <div scrool> -->
+  <!-- <div class="container"> -->
+  <!-- <div class="form-group"> style="display: none;"-->
+  <div id="contenidoGrid">
+    <div id="TEMPORAL_SEG">
+      <!-- <div class="container"> -->
+      <div id="tabstripSeg" class="tabstripSeg1 k-tabstrip-items">
+        <ul>
+          <li
+            id="liSeguimientoSeg"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">SG</label>
+            <i
+              id="l1"
+              class="fa fa-car fa-lg"
+              aria-hidden="true"
+              title="Seguimiento Vehículo Nuevo"
+            ></i>
+          </li>
+          <li
+            id="liFacturaSeg"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">FC</label>
+            <i
+              id="l2"
+              class="fa fa-university"
+              aria-hidden="true"
+              title="Datos Cliente"
+            ></i>
+          </li>
+          <li
+            id="liEstadosSeg"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">EA</label>
+            <i
+              id="l3"
+              class="fa fa-address-card"
+              aria-hidden="true"
+              title="Estados Asociados"
+            ></i>
+          </li>
+          <li
+            id="liAccesoriosSeg"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">SL</label>
+            <i
+              id="l4"
+              class="fa fa-cogs fa-lg"
+              aria-hidden="true"
+              title="Accesorios"
+            ></i>
+          </li>
+          <li
+            id="liLlamadasSeg"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">AC</label>
+            <i
+              id="l5"
+              class="fa fa-phone-square"
+              aria-hidden="true"
+              title="Seguimientos Llamadas"
+            ></i>
+          </li>
+          <li
+            id="liLlamadasSegNO"
+            style="display: initial"
+            onclick="altoContainer()"
+          >
+            <label style="display: none">ANC</label>
+            <i
+              id="l6"
+              class="fa fa-volume-control-phone"
+              aria-hidden="true"
+              title="Causales no entrega"
+            ></i>
+          </li>
+        </ul>
+        <div>
+          <p>
+            <legend id="lydVista0" style="min-width: 667px">SEGUIMIENTO</legend>
+          </p>
+          <div>
+            <table
+              class="scroll_horizontal"
+              align="lefth"
+              border="0"
+              cellspacing="0"
+              cellpadding="0"
+              id="tablaSeguimiento"
+              style="display: block"
+            >
+              <tr>
+                <td>
+                  <p>
+                    <label class="w3-text-red"
+                      ><b>N&#186; Registros Consultados</b></label
+                    >
+                  </p>
+                  <p>
+                    <input
+                      name="totalRegistros"
+                      type="number"
+                      id="totalRegistros"
+                      readonly
+                      class="w3-input w3-border textos"
+                      style="max-width: 120px"
+                    />
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <div id="gridSeguimiento" class="responsivo1"></div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!-- <table align="center" width="95%" border="0" cellspacing="0" cellpadding="0" id="2tablaEntregaDet" style="display:block">
+                            <tr>
+                                <td>     display:none
+                                    <div id="2gridListaEntrega" style="font-size:11px; width:1500px"></div>
+                                </td>
+                            </tr>
+                        </table> -->
+          </div>
+        </div>
+        <div>
+          <p>
+            <legend id="lydVista1" style="min-width: 667px">DATOS CLIENTE</legend>
+          </p>
+          <div>
+            <table
+              align="lefth"
+              border="0"
+              cellspacing="0"
+              cellpadding="0"
+              id="tablaDatosCliente"
+              style="display: block"
+            >
+              <tr>
+                <td>
+                  <div
+                    id="tablaDatosCliente"
+                    style="font-size: 11px; display: none"
+                  ></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div>
+          <p>
+            <legend id="lydVista2" style="min-width: 667px">ESTADOS ASOCIADOS</legend>
+          </p>
+          <p>
+            <label class="w3-text-red"
+              ><b>N&#186; Registros Consultados</b></label
+            >
+          </p>
+          <p>
+            <input
+              name="totalRegistrosAsociados"
+              type="number"
+              id="totalRegistrosAsociados"
+              readonly
+              class="w3-input w3-border textos"
+              style="max-width: 120px"
+            />
+          </p>
+          <div>
+            <!-- <table align="center" width="2000px" border="0" cellspacing="0" cellpadding="0" id="tablaEstadosAsociados" style="display:block">
+                            <tr>
+                                <td> -->
+            <div id="gridEstadosAsociados" class="responsivo"></div>
+            <!-- </td>
+                    </tr>
+                </table> -->
+          </div>
+        </div>
+        <div>
+          <p>
+            <legend id="lydVista3" style="min-width: 667px">ACCESORIOS</legend>
+          </p>
+          <p>
+            <label class="w3-text-red"
+              ><b>N&#186; Registros Consultados</b></label
+            >
+          </p>
+          <p>
+            <input
+              name="totalRegistrosAccesorios"
+              type="number"
+              id="totalRegistrosAccesorios"
+              readonly
+              class="w3-input w3-border textos"
+              style="max-width: 120px"
+            />
+          </p>
+          <div>
+            <!-- <table align="center" width="2000px" border="0" cellspacing="0" cellpadding="0" id="tablaSeguimientoAccesorios" style="display:block">
+                            <tr>
+                                <td> -->
+            <div id="gridSeguimientoAccesorios" class="responsivo"></div>
+            <!-- </td>
+                    </tr>
+                </table> -->
+          </div>
+        </div>
+        <div>
+          <p>
+            <legend id="lydVista4" style="min-width: 667px">SEGUIMIENTO LLAMADAS</legend>
+          </p>
+          <div>
+            <!-- <table align="center" width="2000px" border="0" cellspacing="0" cellpadding="0" id="tablaSeguimientoLlamadas" style="display:block">
+                            <tr>
+                                <td> -->
+            <div id="consultaCausal" class="responsivo"></div>
+            <!-- </td>
+                    </tr>
+                    <tr>
+                        <td> -->
+            <p>
+              <label class="w3-text-red"
+                ><b>N&#186; Registros Consultados</b></label
+              >
+            </p>
+            <p>
+              <input
+                name="totalRegistrosLlamadas"
+                type="number"
+                id="totalRegistrosLlamadas"
+                readonly
+                class="w3-input w3-border textos"
+                style="max-width: 120px"
+              />
+            </p>
+            <div id="gridSeguimientoLlamadas" class="responsivo"></div>
+            <!-- </td>
+                    </tr>
+                </table> -->
+          </div>
+        </div>
+        <div>
+          <p>
+            <legend id="lydVista5" style="min-width: 667px">CAUSALES NO ENTREGA</legend>
+          </p>
+          <div>
+            <div id="consultaCausalNO" class="responsivo"></div>
+            <p>
+              <label class="w3-text-red"
+                ><b>N&#186; Registros Consultados</b></label
+              >
+            </p>
+            <p>
+              <input
+                name="totalRegistrosLlamadasNO"
+                type="number"
+                id="totalRegistrosLlamadasNO"
+                readonly
+                class="w3-input w3-border textos"
+                style="max-width: 120px"
+              />
+            </p>
+            <div id="gridSeguimientoLlamadasNO" class="responsivo"></div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- </div>
+        </div>
+    </div> -->
+      <!-- </div> -->
+    </div>
+  </div>
+  <footer data-role="footer">
+    <table width="100%">
+      <tr>
+        <td align="center">
+          <button id="btnRegresarCausal0" onclick='abrirPagina("home")' class="w3-btn">
+            <i id="icnRegresarCausal0" class="fa fa-chevron-left" aria-hidden="true"></i> REGRESAR
+          </button>
+          <button id="btnRegresarCausal1"
+            onclick="VaciarCamposSeguimiento(true);"
+            class="w3-btn"
+          >
+            <i id="icnRegresarCausal1" class="fa fa-file" aria-hidden="true"></i>
+            NUEVO
+          </button>
+        </td>
+      </tr>
+    </table>
+  </footer>
+  <!-- END_CUSTOM_CODE_vista -->
+</div>
+<style>
+  .tabstripSeg1 .k-content {
+    width: 100%;
+    min-width: 370%;
+  }
+
+   .tabstripSeg1 .k-state-active {
+    margin: auto;
+  }
+
+  .responsivo1{
+      margin: auto;
+  }
+  .bg-color{
+    background-color: rosybrown;
+  }
+</style>

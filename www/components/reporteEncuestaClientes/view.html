@@ -1,0 +1,72 @@
+<div data-role="view" data-title="view" data-layout="main" data-model="app.reporteEC" data-show="app.reporteEC.onShow" data-after-show="app.reporteEC.afterShow" id="reporteECScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-id-card-o' aria-hidden='true'></i>  <span data-bind="text: strings.reporteEncuestaClientes.title" style="font-weight:bold"></span>
+            <h1><b><span id="NoOrdenEC" class="km-view-subtitle"></span></b></h1>
+            <!--<span data-bind="text: strings.reporte1.title" style="font-weight:bold"></span>-->
+            <!--<a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>-->
+            <a data-align="right" class="fa fa-reply" onclick="volverEC()" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+    
+    <div id="dialogfirmaDigitalOTEC"></div>
+    <div id="dialogfirmaOTEC"></div>
+    <div id="tabstripEC" style="display: block">
+        <ul>
+            <li id="liVideo" style="display:initial">
+                <label style="display:initial"></label>
+                <i id="l8" class="fa fa-play-circle-o fa-lg" aria-hidden="true" title="Formulario Encuesta Clientes"></i>
+            </li>
+        </ul>
+        <div>
+            <p>
+                <legend style="min-width:667px;">FORMULARIO ENCUESTA CLIENTES</legend>
+            </p>
+            <table align="center" width="95%">
+
+                <tr>
+                    <td>
+                        <div id="descSMS_1REC"></div>
+                    </td>
+                </tr>
+        
+            </table>
+            <br/>
+        </div>
+    </div>
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterEC"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    <!-- END_CUSTOM_CODE_home -->
+</div>
+
+<style>
+    .circulo {
+     width: 50px;
+     height: 50px;
+     -moz-border-radius: 25%;
+     -webkit-border-radius: 25%;
+     border-radius: 25%;
+     background: #5cb85c;
+}
+
+</style>
+<style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 100vh !important;
+}
+</style>

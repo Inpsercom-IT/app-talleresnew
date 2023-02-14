@@ -1,0 +1,71 @@
+<div data-role="view" data-title="text: strings.facturasgc.title" data-layout="main" data-model="app.facturasgc" data-show="app.facturasgc.onShow" data-after-show="app.facturasgc.afterShow" id="facturasgcScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-calendar-check-o' aria-hidden='true'></i>  <span data-bind="text: strings.facturasgc.title" style="font-weight:bold"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a id="volver_entSGC" data-align="right" class="fa fa-reply" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+
+    <header data-role="header" id="headEVSGC">
+        <div id="dialogMailEV2"></div>    
+        <!------------------------------------------------------------------------------------------------>
+        <div id="tablaUsuEntSGC" style="display:none">
+            <table align="center" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="vertical-align:top">
+                        <p><label class="w3-text-red"><b>Fecha</b></label></p>
+                        <p><input id="datepickerSGC" title="datepicker" style='max-width:150px' /></p>
+                    </td>
+                    <td style="vertical-align:top">&nbsp;</td>
+                    <td style="vertical-align:top">
+                        <p><label class="w3-text-red"><b>Usuario</b></label></p>
+                        <p><div id="divListaUsuEntregaSGC"></div></p>
+                        <p>
+                            <div id="divColorSGC"></div>
+                        </p>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!------------------------------------------------------------------------------------------------>
+        <div id="tablaEntVehSGC"></div>
+
+    </header>
+    <table align="center" width="95%" border="0" cellspacing="0" cellpadding="0" id="tablaEntregaDetSGC" style="display:block">
+        <tr>
+            <td>
+                <div id="gridListaEntregaSGC" style="font-size:11px; width:1500px"></div>
+            </td>
+        </tr>
+    </table>
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    <div id="btnFooterEntregaSGC"></div>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+
+
+    <!-- END_CUSTOM_CODE_agencia -->
+</div>
+<style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 100vh !important;
+}
+</style>

@@ -1,0 +1,78 @@
+<div data-role="view" data-title="text: strings.home.title" data-layout="main" data-model="app.agenda" data-show="app.agenda.onShow" data-after-show="app.agenda.afterShow" id="agendaScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <!--<div id="nomTalleres"></div>-->
+            <i class='fa fa-calendar' aria-hidden='true'></i>  <span data-bind="text: strings.agenda.title" style="font-weight:bold"></span>
+
+
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            <a data-align="right" class="fa fa-reply" href="components/home/view.html" onclick="verMenu('1')" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_home -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+  
+    <div id="confirm"></div>
+    <div id="dialog"></div>
+
+    <div id="dialogSincro"></div>
+
+
+    <header data-role="header">
+        <table align="center">
+
+            <tr style="height:40px">
+            <td><b><label>Asesor</label>&nbsp;&nbsp;</b></td>
+            <td><div id="divListaUsu"></div></td>
+
+            <tr style="height:40px">
+                <td>
+                    <b><label id="titCitaBusqFech"></label>&nbsp;&nbsp;</b>
+                </td>
+                <td>
+                    <input id="datepicker" title="datepicker" style='max-width:150px' /> &nbsp;&nbsp; 
+                    <!--<a title="Cargar" class="w3-btn w3-red primary" aria-label="Cargar" onclick="cargaAgenda(document.getElementById('datepicker').value)">
+    <i class="fa fa-refresh" aria-hidden="true"></i>
+</a>&nbsp;&nbsp;--> 
+                    <button id="bntAgCarga0" onclick="cargaAgenda(document.getElementById('datepicker').value);" class="w3-btn "><i id="iconMenuP0" class="fa fa-refresh" aria-hidden="true"></i></button>
+                    &nbsp;&nbsp; 
+                    <button id="bntAgCarga2" onclick="sincronizaCloud(document.getElementById('datepicker').value);" class=" w3-btn " style="display:none"><i id="iconMenuP1" class="fa fa-cloud-download" aria-hidden="true"></i><label id="btnSinc"></label></button>
+
+
+                    <button id="bntAgCarga1" onclick="sincronizaCloud_2();" class=" w3-btn "><i id="iconMenuP2" class="fa fa-cloud-download" aria-hidden="true"></i>&nbsp;<label>SINCRONIZAR</label></button>
+
+
+                </td>
+
+              
+
+            </tr>
+
+            <tr id="trColor" style="height:40px">
+                <td colspan="2" style="text-align:center">
+                    <div id="divColor"></div>
+                </td>
+            </tr>
+
+        </table>
+
+        
+
+    </header> 
+
+        <div id="contAgenda"></div>
+
+        <footer data-role="footer">
+            <table width="100%">
+                <tr>
+                    <td align="center">
+                        <div id="btnFooterAgenda"></div>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+
+        <!-- END_CUSTOM_CODE_home -->
+</div>
+

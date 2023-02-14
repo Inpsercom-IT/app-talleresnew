@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width">
+    <link href="kendo/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.default.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    <link href="styles/overrides.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/theme.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="kendo/styles/w3.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.913/styles/kendo.common.min.css">
+
+<style>
+        .k-loading-mask .k-loading-image {
+            background-image: url('kendo/styles/images/carloading2.gif') !important;
+        }
+        
+        div.k-loading-mask {
+            z-index: 3;
+        }
+
+        #tabstrip,
+        #tabstripCitas,
+        #tabstripOT,
+        #tabstripVIN,
+        #tabstripEV,
+        #tabstripEV2 {
+            width: 90vw;
+            top: 1;
+            /*left: 5vw;*/
+            right: 0;
+            align-content: center;
+        }
+        
+        #tabstrip h2 {
+            font-weight: lighter;
+            font-size: 5em;
+            line-height: 1;
+            /*padding: 0 0 0 30px;*/
+            margin: 0;
+        }
+        
+        #tabstrip h2 span {
+            background: none;
+            font-size: .3em;
+            vertical-align: top;
+        }
+        
+        #tabstrip p {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .primary {
+            color: #fff;
+            min-width: 75px;
+        }
+        
+        .calend {
+            width: 105px;
+        }
+        
+        .textos {
+            width: 95%;
+            border-width: 0;
+        }
+        
+        .textos2 {
+            width: 215px;
+        }
+        
+        .textos3 {
+            width: 90%;
+            align-content: flex-end;
+        }
+        
+        .textos4 {
+            width: 25px;
+        }
+        
+        .textos5 {
+            font-size: 13px;
+        }
+        
+        .textos51 {
+            font-size: 15px;
+        }
+        
+        .textos6 {
+            width: 90%;
+        }
+
+        .textos7 {
+            font-size: 12px;
+        }
+        
+        .mialtura {
+            height: 30px;
+        }
+        
+        .container {
+            width: 100%;
+            display: flex;
+            height: 80vh;
+            justify-content: center;
+        }
+        
+        .item {
+            align-self: center;
+        }
+        
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            border: 10px solid #dcdcdc;
+            border-radius: 50%;
+            border-top: 10px solid #3498db;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .letra {
+            font-size: large;
+        }
+        
+        .clase {
+            padding: 2px;
+        }
+
+        
+        table1,
+        th1,
+        td1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th1,
+        td1 {
+            padding: 2px;
+        }
+        
+        .form-group1 {
+            margin-bottom: 15px;
+        }
+        
+        .container1 {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .form-horizontal1 .form-group1 {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        
+        .red {
+            color: red;
+        }
+        
+        .green {
+            color: green;
+        }
+
+        .white {
+            color: white;
+        }
+
+        .black {
+            color: black;
+        }
+        
+        .select-style {
+            border: 1px solid #ccc;
+            width: 250px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .select-style select {
+            padding: 5px 8px;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            -webkit-appearance: none;
+        }
+        
+        .select-style select:focus {
+            outline: none;
+        }
+        /*.fondoRojo {
+            background-color: #bb162b;
+        }*/
+        
+        .k-button {
+            min-width: 25px !important;
+            min-height: 25px !important;
+            padding: 0 !important;
+        }
+        
+        .agendaCab {
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            background-color: #f44336;
+        }
+        
+        .navbar2 {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        
+        legend {
+            border-radius: 10px;
+            background: #F44336;
+            color: #fff;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+
+        #rcorners1, #rcorners2 {
+    border-radius: 5px;
+    background: #73AD21;
+    padding: 5px; 
+  width: 150px;
+  
+}
+
+
+
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.container33{
+  padding-top:50px;
+  margin: auto;
+}
+
+</style>
+    <script src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+    <script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="bower_components/print.js/dist/print.min.js"></script>
+
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery-3.6.0.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="app.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+    <script src="dataProviders/jsonProvider.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+
+    <script src="kendo/js/easycal.js"></script>
+    <link href="kendo/styles/easycal.css" rel="stylesheet">
+
+    <script src="kendo/js/jquery.gdocsviewer.min.js"></script>
+    <script src="kendo/js/jquery.gdocsviewer.js"></script>
+    <script src="kendo/js/dist/JsBarcode.all.js"></script>
+
+    <script type="text/javascript" src="kendo/js/SocialSharing.js"></script>
+
+    <script src="https://szimek.github.io/signature_pad/js/signature_pad.umd.js"></script>
+
+
+
+
+</head>
+
+<body id="kendoUiMobileApp">
+    <script src="components/nuevoveh/index.js"></script>
+    <script src="components/admOt/index.js"></script>
+    <script src="components/detallemo/index.js"></script>
+    <script src="components/admcita/index.js"></script>
+    <script src="components/vin/index.js"></script>
+    <script src="components/vista/index.js"></script>
+    <script src="components/home/index.js"></script>
+    <script src="components/lector_barras/index.js"></script>
+    <script src="components/login/index.js"></script>
+    <script src="components/detalle_ot/index.js"></script>
+    <script src="components/agenda/index.js"></script>
+    <script src="components/reporte1/index.js"></script>
+    <script src="components/agencia/index.js"></script>
+    <script src="components/controlCalidad/index.js"></script>
+    <script src="components/reporteControlCalidad/index.js"></script>
+    <script src="components/controlCalidadAprueba/index.js"></script>
+    <script src="components/reporteControlCliente/index.js"></script>
+    <script src="components/reporteClienteAprobado/index.js"></script>
+    <script src="components/reporteEncuestaClientes/index.js"></script>
+    <script src="components/ordenesRelaciondas/index.js"></script>
+    <script src="components/inpresion/index.js"></script>
+    <script src="components/codigoappkia/index.js"></script>
+    <script src="components/facturasgc/index.js"></script>
+    <script src="components/avaluo/index.js"></script>
+    <script src="components/certificacion_vehiculo/index.js"></script>
+
+    <div data-role="layout" data-id="main">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+            </div>
+        </header>
+    </div>
+
+    <div data-role="layout" data-id="main-nonav">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+    </div>
+    
+    <div id="appDrawer" data-role="drawer" data-title="Menu Principal">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+
+        <div id="vwLogin">
+            <div data-bind="visible: isVisible">
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/login/view.html"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Acceso</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="vwLogout">
+            <div data-bind="visible: isVisible">
+                <ul id="navigation-container" data-role="listview">
+                    <li>
+                        <span class="navigation-link-text">
+                            <label id="iniUsuario" style="font-size: 12px"></label>
+                        </span>
+                    </li>
+                </ul>
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/home/view.html" onclick="verMenu('1')"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Inicio</span></a></li>
+                </ul>
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/agenda/view.html"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Calendario de Citas</span></a></li>
+                </ul>
+                <ul id="navigation-container" data-role="listview">
+                    <li><a onclick="abrirPagina2('lector_barras');"><i class="fa fa-car" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Recepci&oacute;n Veh&iacute;culo</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/admOt/view.html"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Ordenes de Trabajo</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/vin/view.html"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Registrar VIN</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/vista/view.html"><i class="fa fa-forward" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Seguimiento Nuevo</span></a></li>
+                </ul>
+
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/agencia/view.html"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Agenda Entrega</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/facturasgc/view.html"><i class="fa-id-card-o" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Agenda Entrega</span></a></li>
+                </ul>
+              
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/nuevoveh/view.html"><i class="fa fa-taxi" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Entrega Nuevo Veh.</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/controlCalidad/view.html"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Control Calidad</span></a></li>
+                </ul>
+
+                <ul id="navigation-container" data-role="listview">
+                    <li><a href="components/codigoappkia/view.html"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Codigo Temporal App</span></a></li>
+                </ul>
+                
+                <ul data-role="listview">
+                    <li><a onclick="abrirPagina('certificacion_vehiculo');"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;<span class="navigation-link-text">Avaluo seminuevos</span></a></li>
+                </ul>
+                
+                <ul id="navigation-container" data-role="listview">
+                    <li><a onclick="cerrarSistema();"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;<span id="spnLogout" class="navigation-link-text">Cerrar</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="notify" class="notify-pop-up">
+        <span class="notify-pop-up__content"></span>
+    </div>
+    <!--  start index html save -->
+    <!--  end index html save -->
+    <!-- START_CUSTOM_CODE_kendoUiMobileApp -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <!-- END_CUSTOM_CODE_kendoUiMobileApp -->
+   
+</body>
+
+</html>

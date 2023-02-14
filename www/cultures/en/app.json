@@ -1,0 +1,79 @@
+{
+  "_app": {
+    "navigationMore": "More",
+    "showMoreTitle": "Show More",
+    "qrCodeScan": "Scan"
+  },
+  "home": {
+    "title": "INICIO"
+  },
+  "login": {
+    "title": "ACCESO"
+  },
+  "lector_barras": {
+    "title": "RECEPCIÓN VEHÍCULO"
+  },
+  "detalle_ot": {
+    "title": "ORDENDES DE TRABAJO"
+  },
+  "logout": {
+    "title": "CERRAR"
+  },
+  "vista": {
+    "title": "SEGUIMIENTO VEHÍCULOS NUEVOS"
+  },
+  "agenda": {
+    "title": "CALENDARIO DE CITAS"
+  },
+  "reporte1": {
+    "title": "DETALLE ORDEN DE TRABAJO"
+  },
+  "vin": {
+    "title": "REGISTRAR VIN"
+  },
+  "admcita": {
+    "title": "CITAS"
+  },
+  "detallemo": {
+    "title": "MANO"
+  },
+  "admOt": {
+    "title": "ORDENES DE TRABAJO"
+  },
+  "nuevoveh": {
+    "title": "ENTREGA VEHÍCULOS NUEVOS"
+  },
+  "agencia": {
+    "title": "AGENDA VEHÍCULOS NUEVOS"
+  },
+  "facturasgc": {
+    "title": "LISTA DE FACTURAS SGC"
+  },
+  "controlCalidad": {
+    "title": "CONTROL DE CALIDAD"
+  },
+  "reporteControlCalidad": {
+    "title": "DOCUMENTO CONTROL DE CALIDAD"
+  },
+  "controlCalidadAprueba": {
+    "title": "APROBACION CONTROL DE CALIDAD"
+  },
+  "reporteControlCliente": {
+    "title": "APROBACION CLIENTE"
+  },
+  "reporteClienteAprobado": {
+    "title": "APROBACION CLIENTE"
+  },
+  "reporteEncuestaClientes": {
+    "title": "ENCUESTA CLIENTE"
+  },
+  "ordenesRelaciondas": {
+    "title": "ORDENES RELACIONADAS"
+  },
+  "codigoappkia": {
+    "title": "CONSULTA CODIGO TEMPORAL APP KIA"
+  },
+  "avaluo": {
+    "title": "AVALUO VEHICULO SEMINUEVO"
+  }
+}

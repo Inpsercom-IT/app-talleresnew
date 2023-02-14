@@ -1,0 +1,482 @@
+<div data-role="view" data-title="View" data-layout="main" data-model="app.admcita" data-show="app.admcita.onShow" data-after-show="app.admcita.afterShow" id="admcitaScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <i class='fa fa-calendar' aria-hidden='true'></i> <span data-bind="text: strings.admcita.title" style="font-weight:bold"></span>
+            <!--<a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>-->
+            <a id="cita_volver_1" data-align="right" class="fa fa-reply" href="components/agenda/view.html" onclick="abrirPagina('agenda');" aria-hidden="true" data-role="button"></a>
+
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_admcita -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <header data-role="header">
+
+
+        <div id="cita_divCnt" style="display:initial"></div>
+        <center>
+            <table id="cita_tableOpciones" align="center" style="display:initial;width:100%"><tr height="40"><td><b>Registrar por&nbsp;</b></td><td><input type="radio" id="cita_op1" name="opcBusqueda" value="VIN" onclick="verTipoCita2(this.value)" checked></td><td>Placa o Vin</td><td>&nbsp;&nbsp;&nbsp;</td><td><input type="radio" id="cita_op2" name="opcBusqueda" value="CLI" onclick="verTipoCita2(this.value)"></td><td>Cliente</td></tr></table>
+        </center>
+
+
+
+        <table align="center" cellpadding="0" cellspacing="0" width="300">
+
+            <tr height="40px" id="cita_trID" style="display:initial">
+                <td>
+                    <input class="w3-input w3-border textos2" id="cita_infoPlacasVIN" name="infoPlacasVIN" type="text" placeholder="Placa o VIN" style="text-transform:uppercase;" onkeyup="javascript: this.value = this.value.toUpperCase();" value="">
+                </td>
+                <td align="center">
+                    <a id="cita_btnBusquedas0" class="w3-btn primary" aria-label="Buscar" onclick="citaPlacaVIN_2(document.getElementById('cita_infoPlacasVIN').value);">
+                        <i class="fa fa-search" aria-hidden="true"></i> BUSCAR
+                    </a>
+                </td>
+            </tr>           
+        </table>
+
+        <!--vip-->
+        <table align="center" cellpadding="0" cellspacing="0" width="300">
+            <tr><td  align="center"><b><label id="vip_cita" ></label><input id="txt_vip_cita" type="hidden" value="" /></b></td></tr>
+            </table>
+
+
+            <table align="center" cellpadding="0" cellspacing="0" width="600">
+                <tr>
+                    <td>
+                        <div id="gridVinAg" style="font-size:11px; display:initial"></div>
+                    </td>
+                </tr>
+            </table>
+
+</header>
+
+    <div class="fondoRojoLogin">
+        <div scrool>
+            <div class="container">
+
+                <div class="form-group">
+
+
+
+                    <div id="tabstripCitas">
+                        <ul>
+                            <li id="liVehiculo" style="display:initial" class="k-state-active">
+                                <i class="fa fa-car fa-lg" aria-hidden="true" title="Datos del Vehiculo"></i>
+                            </li>
+
+                            <li id="liCliente" style="display:initial">
+                                <i class="fa fa-user fa-lg" aria-hidden="true" title="Datos Propietario"></i>
+                            </li>
+
+                            <li id="liHistorial" style="display:initial">
+                                <i class="fa fa-dashboard fa-lg" aria-hidden="true" title="Historial"></i>
+                            </li>
+
+                        </ul>
+                        <div>
+
+                            <p>
+                                <!--<legend>DATOS VEH&#205;CULO</legend>-->
+
+                                <legend id="liVehiculo0" style="min-width:667px;">DATOS VEH&#205;CULO</legend>
+                            </p>
+
+                            <p>
+                                <label class="w3-text-red" >
+                                    <b>
+                                        Propietario
+                                    </b>
+                                </label><input id="cita_nombre_propietario" data-bind="value: nombre_propietario" class="w3-input textos" readonly />
+                            </p>
+
+                            <table style="width:100%;">
+                                <tr>
+                                    <td width="65%">
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>
+                                                    VIN
+                                                </b>
+                                            </label>
+                                            <input id="cita_chasis" data-bind="value: chasis" class="w3-input textos" readonly />
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>Placa</b></label>
+
+                                            <div id="cita_divPlaca"></div>
+                                        </p>
+                                        <p>  <input id="cita_placa" onkeyup="javascript: this.value = this.value.toUpperCase();" maxlength="7" readonly /></p>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td width="65%">
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>
+                                                    Modelo
+                                                </b>
+                                            </label><input id="cita_mi_modelo" data-bind="value: mi_modelo" class="w3-input textos" readonly />
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>
+                                                    Marca
+                                                </b>
+                                            </label><input id="cita_codigo_marca" data-bind="value: codigo_marca" class="w3-input textos" readonly />
+                                        </p>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+
+                                    <td width="65%">
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>
+                                                    A&ntilde;o
+                                                </b>
+                                            </label><input id="cita_anio_modelo" data-bind="value: anio_modelo" class="w3-input textos" readonly />
+                                        </p>
+
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red">
+                                                <b>
+                                                    Color
+                                                </b>
+                                            </label><input id="cita_nombre_color" data-bind="value: nombre_color" class="w3-input textos" readonly />
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>
+                                        Secci&oacuten
+                                    </b>
+                                </label>
+
+
+                                <div id="cita_divcboseccion"></div>
+
+                            </p>
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>
+                                        Tipo Trabajo
+                                    </b>
+                                </label>
+
+
+                                <div id="cita_divcboTrabajo"></div>
+
+
+
+                            </p>
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>
+                                        Tipo Mantenimiento
+                                    </b>
+                                </label>
+
+
+                                <div id="cita_divcboMantenimiento"></div>
+
+
+                            </p>
+
+                            <div id="cita_divcboCupones" style="display:initial"></div>
+
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>
+                                        Reparaciones Solicitadas
+                                    </b>
+                                </label>
+                                <textarea name="reparaciones" id="cita_reparaciones" class="k-textbox" style="height: 40px; width: 95%" maxlength="300"></textarea>
+                            </p>
+                            <p>
+                                <label class="w3-text-red">
+                                    <b>
+                                        Observaciones
+                                    </b>
+                                </label>
+                            </p><p>
+                                <textarea name="observaciones" id="cita_observaciones" class="k-textbox" style="height: 40px; width: 95%" maxlength="300"></textarea>
+                            </p>
+
+
+                        </div>
+
+                        <div>
+
+                            <p>
+                                <!--<legend>DATOS PROPIETARIO</legend>-->
+                                <legend id="liVehiculo1" style="min-width:667px;">DATOS PROPIETARIO</legend>
+                            </p>
+
+                            <table width="100%" class="textos">
+
+                                <tr>
+                                    <td style="width:60%"> <div id="cita_divcboCita"></div>  </td>
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>Estado</b></label>
+                                            <div id="cita_divcboestado"></div>
+                                        </p>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>Tipo Persona</b></label>
+                                            <div id="cita_divcbotpers"></div>
+                                        </p>
+
+                                    </td>
+
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+
+                                        <p>
+                                            <label class="w3-text-red"><b>Tipo ID</b></label>
+                                            <div id="cita_divcbotid"></div>
+                                        </p>
+                                    </td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <td><div id="divcboCitaNacionalidad"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>ID</b></label>
+
+
+
+                                            <input name="identifica_cliente" type="number" id="cita_identifica_cliente" placeholder="CEDULA O RUC" onchange="ConsultarClienteCita(this.value)" class="w3-input w3-border textos">
+
+
+
+                                        </p>
+
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>No.</b></label>
+                                            <input name="persona_numero" type="text" id="cita_persona_numero" class="w3-input textos" readonly />
+
+
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+
+                            </table>
+
+
+
+
+                            <p>
+                                <label class="w3-text-red"><b>Nombre 1</b></label>
+                                <input type="text" id="cita_persona_nombre" class="w3-input w3-border textos">
+                            </p><p>
+                                <label class="w3-text-red"><b>Nombre 2</b></label>
+                                <input type="text" id="cita_persona_nombre2" class="w3-input w3-border textos" />
+
+
+                            </p><p>
+                                <label class="w3-text-red"><b>Apellido 1 / Raz&oacute;n Social</b></label>
+                                <input type="text" id="cita_persona_apellido" class="w3-input w3-border textos">
+                            </p><p>
+                                <label class="w3-text-red"><b>Apellido 2</b></label>
+                                <input type="text" id="cita_persona_apellido2" class="w3-input w3-border textos">
+
+
+                            </p>
+                            <p>
+                                <label class="w3-text-red"><b>Pa&iacutes</b></label>
+                                <div id="divcboCitaPais"></div>
+                            </p>
+                            <p>
+                                <label class="w3-text-red"><b>Ciudad</b></label>
+                                <!--<input name="cli_ciudad_propietario" class="w3-input w3-border textos" id="cita_cli_ciudad_propietario" data-bind="value: nombre_propietario" />-->
+                                <div id="divcboCitaCiudad"></div>
+
+                            </p><p>
+                                <label class="w3-text-red"><b>Direcci&oacuten</b></label>
+                                <!--<input id="cita_direc" placeholder="Select direc..." class="w3-input w3-border textos" />-->
+                                <div id="cita_divcbodirec"></div>
+                            </p><p>
+                                <label class="w3-text-red"><b>Calle</b></label>
+                                <input name="cita_calle_cliente" type="text" id="cita_calle_cliente" class="w3-input w3-border textos">
+                            </p><p>
+                                <label class="w3-text-red"><b>No. Calle</b></label>
+                                <input name="cita_numero_calle" type="text" id="cita_numero_calle" class="w3-input w3-border textos">
+
+
+                            </p><p>
+                                <label class="w3-text-red"><b>Intersecci&oacuten</b></label>
+                                <input name="cita_calle_interseccion" type="text" id="cita_calle_interseccion" class="w3-input w3-border textos">
+                            </p>
+
+                            <table class="textos">
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>Tel&eacute;fono</b></label>
+                                            <input name="cita_telefono_cliente" type="number" id="cita_telefono_cliente" class="w3-input w3-border textos">
+                                        </p>
+
+
+
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        <p>
+                                            <label class="w3-text-red"><b>Celular</b></label>
+                                            <input name="celular_cliente" type="number" id="cita_celular_cliente" class="w3-input w3-border textos">
+                                        </p>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+
+
+                            <p>
+                                <label class="w3-text-red"><b>Email</b></label>
+                                <input name="cita_email_cliente" type="text" id="cita_email_cliente" size="55" class="w3-input w3-border textos">
+
+
+                            </p>
+
+                            <input id="fecha_confirmacion" type="hidden">
+                            <input id="hora_confirmacion" type="hidden">
+                            <input id="usuario_confirmacion" type="hidden">
+                            <input id="fecha_creacion" type="hidden">
+                            <input id="hora_creacion" type="hidden">
+                            <input id="usuario_creacion" type="hidden">
+                            <input id="persona_numero_profesional" type="hidden">
+
+
+                        </div>
+
+                        <div>
+
+                            <p>
+                                <!--<legend>HISTORIAL DE MANTENIMIENTO</legend>-->
+                                <legend id="liVehiculo2" style="min-width:667px;">HISTORIAL DE MANTENIMIENTO</legend>
+                            </p>
+                            <table id="cit_tablaPrmEM" style="display:none" width="100%" border="0" cellspacing="15" cellpadding="0">
+                                <tr>
+                                    <td width="55%">
+                                        <p>
+                                            <label class="w3-text-red"><b>&#218;ltimo ingreso taller</b></label>
+                                            <input name="fecEM" type="text" id="cit_fecEM" class="w3-input textos" readonly>
+                                        </p>
+                                    </td>
+
+                                    <td>&nbsp;</td>
+                                    <td width="30%">
+                                        <p>
+                                            <label class="w3-text-red"><b>Kilometraje</b></label>
+                                            <input name="kmEM" type="text" id="cit_kmEM" class="w3-input textos" readonly>
+                                        </p>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+
+                            <div id="cit_divtableEM"></div>
+
+                            <!--<table id="tablaPrmEM" style="display:none" width="100%" border="0" cellspacing="15" cellpadding="0">
+                                <tr>
+                                    <td width="55%">
+                                        <p>
+                                            <label class="w3-text-red"><b>&#218;ltimo ingreso taller</b></label>
+                                            <input name="fecEM" type="text" id="fecEM" class="w3-input textos" readonly>
+                                        </p>
+                                    </td>
+
+                                    <td>&nbsp;</td>
+                                    <td width="30%">
+                                        <p>
+                                            <label class="w3-text-red"><b>Kilometraje</b></label>
+                                            <input name="kmEM" type="text" id="kmEM" class="w3-input textos" readonly>
+                                        </p>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+
+                            <div id="divtableEM"></div>-->
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+
+                    <div id="cita_btnGuardaInfo"></div>
+
+                </td>
+            </tr>
+        </table>
+
+    </footer>
+
+    <!-- END_CUSTOM_CODE_admcita -->
+</div>
+<style>
+    div .k-content .k-state-active {
+    min-width: 90%;
+}
+
+.k-content {
+    width: unset !important;
+}
+
+.k-tabstrip .k-content.k-state-active {
+   height: 100vh !important;
+}
+</style>

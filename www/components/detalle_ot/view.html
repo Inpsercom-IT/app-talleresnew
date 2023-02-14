@@ -1,0 +1,41 @@
+<div data-role="view" data-title="text: strings.home.title" data-layout="main" data-model="app.detalle_ot" data-show="app.detalle_ot.onShow" data-after-show="app.detalle_ot.afterShow" id="detalle_otScreen" class="screen">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <div id="nomTalleres"></div>
+            <!--<span data-bind="text: strings.detalle_ot.title"></span>-->
+            <!--<a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>-->
+            <a data-align="right" class="fa fa-reply" onclick="volverOT()" aria-hidden="true" data-role="button"></a>
+        </div>
+    </header>
+
+    <!-- START_CUSTOM_CODE_home -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <!--<button onclick="shareMessageViaWhatsApp()">WhatsApp</button>-->
+
+    <table align="center" width="95%">
+        <tr>
+            <td>
+                <div id="gridDetalleOT" style="font-size:11px"></div>
+                <br />
+            </td>
+        </tr>
+    </table>
+
+    <div id="otObs"></div>
+
+    <footer data-role="footer">
+        <table width="100%">
+            <tr>
+                <td align="center">
+
+                    <div id="btnFooterDetOT"></div>
+
+
+                    <!--<button onclick="volverOT()" class="w3-btn w3-red"><i class="fa fa-chevron-left" aria-hidden="true"></i> REGRESAR</button>-->
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+    <!-- END_CUSTOM_CODE_home -->
+</div>
