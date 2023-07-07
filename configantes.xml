@@ -8,6 +8,8 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
+    
+    <allow-navigation href="*"/>
     <access origin="http://186.71.68.154:8089/test/services/TL/Taller.svc/guardaArchivoEntrega/" />
     <allow-navigation href="http://186.71.68.154:8089/test/services/TL/Taller.svc/guardaArchivoEntrega/" />
     <access origin="*" />
@@ -42,11 +44,9 @@
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,assets,root" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" />
-            <application android:requestLegacyExternalStorage="true" />
+            
             <activity android:theme="@android:style/Theme.Translucent" />
         </edit-config>
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android"> <application android:requestLegacyExternalStorage="true" /> </edit-config>
         <icon density="ldpi" src="res/icon/android/ldpi.png"/>
         <icon density="mdpi" src="res/icon/android/mdpi.png"/>
         <icon density="hdpi" src="res/icon/android/hdpi.png"/>

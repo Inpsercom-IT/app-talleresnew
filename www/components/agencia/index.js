@@ -1436,7 +1436,7 @@ function onElimCita_2(fecCita, horCita) {
                     alert(inspeccionar(data)); */
                     if (inspeccionar(data).includes("ABIERTO") == false)
                     {
-                        window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ALERTA</center>", "<center>No se ha podido eliminar la Cita<br />Estado: <b>" + miEst + "</b></center>");
+                        window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ALERTA</center>", "<center>No se ha podido eliminar la Cita<br />Estado: <b>" + inspeccionar(data).split(",")[1] + "</b></center>");
                     }
                     else {
                         window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ALERTA</center>", "<center>No se ha podido eliminar la Cita<br />" + inspeccionar(data) + "</center>");

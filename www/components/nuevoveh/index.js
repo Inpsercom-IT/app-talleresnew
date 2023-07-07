@@ -2994,8 +2994,8 @@ function registrarEV() {
             window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", "<center>No se ha realizado la captura de la imagen</center>");
             return;
         }
-            console.log(inspeccionar(dataRespuesta[0]));
-            console.log(dataRespuesta.length);
+            //console.log(inspeccionar(dataRespuesta[0]));
+            //console.log(dataRespuesta.length);
         for (var i = 0; i < dataRespuesta.length; i++) {
             //alert(dataRespuesta[i].tipo_respuesta);
             var sevRespts = [];
@@ -3176,8 +3176,8 @@ function registrarEV() {
                     return;
                 }
             });
-                alert(etapaVh03);
-                etapaVh03=false;
+                //alert(etapaVh03);
+                //etapaVh03=false;
             if (etapaVh03 == true) {
                 var UrlVh03 = localStorage.getItem("ls_url2").toLocaleString() + "/Services/vh/Vehiculos.svc/vh03VehiculosSet";
                 var persona_clase = document.getElementById("txt_vip_ev").value;

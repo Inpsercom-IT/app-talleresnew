@@ -112,7 +112,7 @@ function accesoEmpresa(codEmpresa) {
                             localStorage.setItem("ls_idmarca", empResp.codigo_marca);
 
                             localStorage.setItem("ls_url1", empResp.URL_mayorista);
-                            localStorage.setItem("ls_url2", empResp.URL_concesionario);
+                            localStorage.setItem("ls_url2", empResp.URL_concesionario); //"http://45.169.145.226:8089/test"
                             
                             document.getElementById("icnEmpresa0").innerHTML = localStorage.getItem("ls_empresa").toLocaleString();
 
@@ -126,7 +126,7 @@ function accesoEmpresa(codEmpresa) {
 
                     } catch (e) {
 
-                        //    window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> 2ERROR</center>", e);
+                        //window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> 2ERROR</center>", e);
                         window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", "<center>Acceso Denegado.<br />C&oacute;digo incorrecto</center>");
                         //borraCamposlogin();
                         return;
@@ -144,8 +144,8 @@ function accesoEmpresa(codEmpresa) {
         }
 
     } catch (f) {
-        window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", "<center>Acceso Denegado.</br>C&oacute;digo Incorrecto</center>");
-        return;
+        window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i>l1 ERROR</center>", "<center>Acceso Denegado.</br>C&oacute;digo Incorrecto</center>");
+        //return;
     }
 }
 function ConsultarParametroAmbiente(empresa_erp) {

@@ -2414,7 +2414,7 @@ function cargarTablaINP11(inforusa) {
                 alert("1" + e);
             }
             //alert("antes de func");
-            var tablaINP = cargatabla_1AVA(griddata);
+            var tablaINP = cargatabla_ControlCalidad(griddata);
             var registroME = "";
             return tablaINP;
         }
@@ -2647,7 +2647,7 @@ function cargatabla_1AVApdf(griddata1) {
     return tablaOT;
 }
 
-function cargatabla_1AVA(griddata1) {
+function cargatabla_ControlCalidad(griddata1) {
     dataRespuesta = "";
     var tablaOT = "";
     tablaOT += "<table>";

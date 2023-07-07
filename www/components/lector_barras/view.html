@@ -23,20 +23,6 @@
 
             <div id="divCitas1" style="display:none"><span>Agendar Cita</span></div>
         </div>
-    </header>
-    <!-- START_CUSTOM_CODE_lector_barras -->
-    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-    <div id="dialogOT"></div>
-    <div id="dialogOT_1"></div>
-    <div id="dialogOT_2"></div>
-    <div id="dialogPrint"></div>
-
-    <div id="dialogfirmaDigitalOT"></div>
-    <div id="dialogfirmaOTAS"></div>
-
-
-    <header data-role="header">
-
         <div id="divCnt" style="display:initial"></div>
         <center>
             <table id="tableOpciones" align="center" style="display:none;width:100%"><tr height="40"><td><b>Registrar por&nbsp;</b></td><td><input type="radio" id="op1" name="opcBusqueda" value="VIN" onclick="verTipoCita(this.value)" checked></td><td>Placa o Vin</td><td>&nbsp;&nbsp;&nbsp;</td><td><input type="radio" id="op2" name="opcBusqueda" value="CLI" onclick=" verTipoCita(this.value)"></td><td>Cliente</td></tr></table>
@@ -71,10 +57,17 @@
         <label id="lblResult" style="width:100%"></label>
 
     </header>
+
+    <div id="dialogOT"></div>
+    <div id="dialogOT_1"></div>
+    <div id="dialogOT_2"></div>
+    <div id="dialogPrint"></div>
+    <div id="dialogfirmaDigitalOT"></div>
+    <div id="dialogfirmaOTAS"></div>
+
     <div class="fondoRojoLogin">
-        <!--<div class="content"  scrool>-->
-        <div scrool>
-            <div class="container">
+        <div id="container2">
+            <div id="scrollable">
                 <div class="form-group">
 
                     <div id="divInfOT" style="display:none">
@@ -1137,13 +1130,10 @@
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
+ 
     <footer data-role="footer">
         <table width="100%">
             <tr>
@@ -1157,10 +1147,6 @@
 
     </footer>
 
-
-
-
-    <!-- END_CUSTOM_CODE_lector_barras -->
 </div>
 
 <style>
@@ -1170,7 +1156,7 @@
     width:400px !important;
   }​ */
 div.k-content.k-state-active {
-min-width: 90% !important;
+    min-width: 90% !important;
 }
 #packsGridssss{
     position: fixed ; 
@@ -1182,22 +1168,22 @@ min-width: 90% !important;
 .tabstripSeg1 .k-content {
     width: 100% ;
     min-width: 370% ;
-  }
+}
 
-   .tabstripSeg1 .k-state-active {
+.tabstripSeg1 .k-state-active {
     margin: auto ;
-  }
+}
 
-  .responsivo1{
-      margin: auto ;
-  }
-  .bg-color{
+.responsivo1{
+    margin: auto ;
+}
+.bg-color{
     background-color: rosybrown;
-  }
+}
 .rows {
-        display: flex;
-        justify-content: space-between;
-    }
+    display: flex;
+    justify-content: space-between;
+}
 .k-content {
     width: unset !important;
 }
@@ -1209,8 +1195,8 @@ min-width: 90% !important;
   height: 15px;
 }
 .k-overflow-container .k-primary, .k-primary {
-background-color: unset;
-border-color: unset;
+    background-color: unset;
+    border-color: unset;
 }
 .k-state-selected {
     background-color: rgb(187, 190, 190);
@@ -1219,10 +1205,17 @@ border-color: unset;
     background-color: rgb(185, 187, 187);
 }
 .k-overflow-container .k-primary, .k-primary:focus {
-background-color: unset;
-border-color: unset; 
+    background-color: unset;
+    border-color: unset; 
 }
 .k-grid-content {
-overflow-x: scroll !important;
+    overflow-x: scroll !important;
+}
+#content2 {
+    background: none repeat #A0EC25 !important;
+}
+#scrollable {
+    height: 1117px;
+    overflow-y: scroll;
 }
 </style>

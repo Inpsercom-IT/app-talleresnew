@@ -47,6 +47,23 @@ var tipoPacks;
 app.lector_barras = kendo.observable({
   onShow: function () {
     try {
+      document
+      .getElementById("confirmFirmaOT0")
+      .addEventListener("click", function () {
+        firmaDigitalOT();
+      });
+      
+
+    document.addEventListener('deviceready', function() {
+      console.log("perro chiwawa y cochino mal capado 2")
+
+      window.addEventListener('keyboardDidShow', function () {
+        console.log("perro chiwawa y cochino mal capado 3")
+        cordova.plugins.Keyboard.close();
+        cordova.plugins.Keyboard.hide();
+      })
+    })
+
       llamarNuevoestiloIconB("icnOT");
       llamarNuevoestilo("btnBusquedas");
       llamarColorTexto(".w3-text-red");
@@ -159,18 +176,29 @@ app.lector_barras = kendo.observable({
 
       // FIRMA DIGITAL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-      document
-        .getElementById("confirmFirmaOT0")
-        .addEventListener("click", function () {
-          firmaDigitalOT();
-        });
-
+ 
       document
         .getElementById("cancelFirmaOT0")
         .addEventListener("click", function () {
           firmaDigitalNO();
         });
+        $(document).on('touchstart', 'label', function(){
+          console.log("perro chiwawa y cochino mal capado")
 
+          if (!$(this).next('input').is(':checked')) {
+          
+              $('input[data-cat-qty="' + $(this).next('input').attr('data-cat') + '"]').textinput("enable");
+              $('input[data-cat-qty="' + $(this).next('input').attr('data-cat') + '"]').slider("enable");
+              $('input[data-cat-qty="' + $(this).next('input').attr('data-cat') + '"]').focus();
+          
+          } else {
+          
+              $('input[data-cat-qty="' + $(this).next('input').attr('data-cat') + '"]').textinput("disable");
+              $('input[data-cat-qty="' + $(this).next('input').attr('data-cat') + '"]').slider("disable");
+          
+          }
+          
+          });
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
 
       // FIRMA DIGITAL ASESOR>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
