@@ -12,7 +12,7 @@ verVersion();
 var UrlCitasTaller = "";
 var UrlFacturaSGC = "";
 var UrlGarantiaSql = "";
-var wsPrincipal = "http://200.31.10.92:8092/appk_aekia";
+var wsPrincipal = "http://23.101.135.126:8092/appk_aekia";//"http://200.31.10.92:8092/appk_aekia";//"http://23.101.135.126:8092/appk_aekia";
 var htmlFormatoEV = "";
 var ambiente
 //anterior "http://186.71.21.170:8089";

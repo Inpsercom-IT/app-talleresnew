@@ -47,23 +47,7 @@ var tipoPacks;
 app.lector_barras = kendo.observable({
   onShow: function () {
     try {
-      document
-      .getElementById("confirmFirmaOT0")
-      .addEventListener("click", function () {
-        firmaDigitalOT();
-      });
       
-
-    document.addEventListener('deviceready', function() {
-      console.log("perro chiwawa y cochino mal capado 2")
-
-      window.addEventListener('keyboardDidShow', function () {
-        console.log("perro chiwawa y cochino mal capado 3")
-        cordova.plugins.Keyboard.close();
-        cordova.plugins.Keyboard.hide();
-      })
-    })
-
       llamarNuevoestiloIconB("icnOT");
       llamarNuevoestilo("btnBusquedas");
       llamarColorTexto(".w3-text-red");
@@ -12970,7 +12954,7 @@ function cboCarga_2(idCombo, arrCombo, selItem, divCombo) {
   var cboAgenciaHTML =
     "<p><select id='" +
     idCombo +
-    "' class='w3-input w3-border textos' onchange='tipoDePago(this.value)'>";
+    "' class='w3-input w3-border textos' onchange='tipoPago(this.value)'>";
   for (var i = 0; i < arrCombo.length; i++) {
     if (selItem == arrCombo[i]) {
       cboAgenciaHTML +=
@@ -14271,7 +14255,7 @@ Detalle: OT formato HTML
 Autor: RRP
 Cambios: 20-02-2020 - Agrega campo de preguntas y cambio en formato
 --------------------------------------------------------------------*/
-function formatoRep02() {
+function  PruebasformatoRep02() {
   try {
     // Vuelve a buscar la informacion de la OT por si fue cambiada en  el RP
     buscaPlacaVIN(document.getElementById("infoPlacasVIN").value);
@@ -14630,6 +14614,7 @@ function formatoRep02() {
         "    </td>                                      " +
         "    <td style='width:10px'>" +
         "       <b>:</b>        " +
+        "    </td>              " +
         "    <td>" +
         "       <b>" +
         estimado_mantenimiento +
@@ -14642,6 +14627,7 @@ function formatoRep02() {
         "    </td> " +
         "    <td style='width:10px'>" +
         "       <b>:</b>        " +
+        "    </td>              " +
         "    <td>" +
         "       <b>" +
         estimado_otras_tareas +
@@ -14723,135 +14709,104 @@ function formatoRep02() {
       "/formato_mail/logo_flc.jpg";
 
     var htmlReporte =
-      "<html>" +
+      /* "<html>" +
       "<head>" +
       "<title></title>" +
       "</head>" +
-      "<body>" +
-      "<div style='position: fixed; left: 10px; top: 1035px'>" +
+      "<body>" + */
+      /* "<div style='position: fixed; left: 10px; top: 1035px'>" +
       piePag +
-      "</div>" +
-      "<div id='id_1' style='font-family:Arial; font-size:10px'> " +
+      "</div>" + */
+     /*  "<div id='id_1' style='font-family:Arial; font-size:10px'> " + */
+     //imgLogo() +
       "<table cellspacing='0' cellpadding='0' style='width:100%'>" +
-      "<tr>                                                      " +
-      "<td>                                                      " +
-      "<table cellspacing='0' cellpadding='0' style='width:100%'>" +
-      "<tr>" +
-      "<td rowspan='2'>" +
-      "<img src='" +
-      ima +
-      "' alt='FLC' width='115' height='70'>" +
-      //imgLogo() +
-      "</td>" +
-      "<td style='text-align:right;vertical-align:sub; font-family:Arial; font-size:14px;; font-weight:bold'>Orden de Trabajo N&ordm;  " +
-      valorOT +
-      "</td>" +
-      "</tr>" +
-      "<tr> " +
-      "<td style='text-align:right;vertical-align:sub'>" +
+        "<tr>                                                      " +
+            "<td>                                                      " +
+              "<table cellspacing='0' cellpadding='0' style='width:100%'>" +
+                "<tr>" +
+                  "<td rowspan='2'>" +
+                    "<img src='" + ima +   "' alt='FLC' width='115' height='70'>" +
+                   "</td>" +
+                  "<td style='text-align:right;vertical-align:sub; font-family:Arial; font-size:14px;; font-weight:bold'>Orden de Trabajo N&ordm;  " +
+                    valorOT +
+                  "</td>" +
+                  "</tr>" +
+                  "<tr> " +
+                    "<td style='text-align:right;vertical-align:sub'>" +
       //	textToBase64Barcode(valorOT) +
-      "</td>" +
-      "</tr>" +
-      "</table>" +
-      "</td>" +
-      "</tr>" +
-      "<tr style='font-family:Arial; font-size:11px; background-color: #cccccc'>" +
-      "<td><b>DATOS GENERALES:</b></td>" +
-      "</tr>" +
-      "<tr> " +
-      "<td> " +
-      "<table style='width:100%' cellspacing='0' cellpadding='0'>" +
-      "<tr style='font-family:Arial; font-size:9px'>" +
-      "<td style='width:100px'>Fecha recepci&oacute;n</td>" +
-      "<td>&nbsp;</td>" +
-      "<td>" +
-      diasSemana[f.getDay()] +
-      ", " +
-      f.getDate() +
-      " de " +
-      meses[f.getMonth()] +
-      " de " +
-      f.getFullYear() +
-      "</td>" +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>                    " +
-      "<td align='right' style='width:100px'>Hora de Recepci&oacute;n</td>" +
-      "<td style='width:10px'>:</td>" +
-      "<td>" +
-      HoraRec +
-      "</td>" +
-      "</tr>" +
-      "<tr style='font-family:Arial; font-size:9px'>" +
-      "<td>Fecha entrega</td>" +
-      "<td>&nbsp;</td>" +
-      "<td> " +
-      diasSemana[f2.getDay()] +
-      ", " +
-      f2.getDate() +
-      " de " +
-      meses[f2.getMonth()] +
-      " de " +
-      f2.getFullYear() +
-      "</td>" +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>                    " +
-      "<td align='right' style='width:100px'>Hora de Entrega</td>" +
-      "<td style='width:10px'>:</td>" +
-      "<td>" +
-      HoraEnt +
-      "</td>" +
-      "</tr>" +
-      "<tr style='font-family:Arial; font-size:9px'>" +
-      "<td>Agencia</td>" +
-      "<td>&nbsp;</td> " +
-      "<td>" +
-      nombre_sucursal +
-      "</td>" +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>                    " +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>" +
-      "</tr>" +
-      "<tr style='font-family:Arial; font-size:9px'>" +
-      "<td>Direcci&oacute;n</td>" +
-      "<td>&nbsp;</td>" +
-      "<td> " +
-      impdirAgencia +
-      "</td>" +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>                    " +
-      "<td style='width:100px'>&nbsp;</td>" +
-      "<td style='width:10px'>&nbsp;</td> " +
-      "<td>&nbsp;</td>" +
-      "</tr>" +
-      "<tr style='font-family:Arial; font-size:9px'>" +
-      "<td>Secci&oacute;n</td>" +
-      "<td>:</td>" +
-      "<td>" +
-      impSeccion +
-      "</td>" +
-      "<td style='width:100px'>Tipo Trabajo</td>" +
-      "<td style='width:10px'>:</td>" +
-      "<td>" +
-      impTrabajo +
-      "</td>" +
-      "<td style='width:100px'>Cup&oacute;n</td>" +
-      "<td style='width:10px'>:</td>" +
-      "<td>" +
-      impCupon +
-      "</td>   " +
-      "</tr>   " +
-      "</table>" +
-      "</td>   " +
-      "</tr>   " +
-      "<tr style='font-family:Arial; font-size:11px; background-color: #cccccc'>" +
-      "<td><b>DATOS CLIENTE:</b></td>" +
-      "</tr>" +
+                    "</td>" +
+                  "</tr>" +
+                "</table>" +
+               "</td>" +
+              "</tr>" +
+              "<tr style='font-family:Arial; font-size:11px; background-color: #cccccc'>" +
+                "<td><b>DATOS GENERALES:</b></td>" +
+              "</tr>" +
+              "<tr> " +
+                "<td> " +
+                  "<table style='width:100%' cellspacing='0' cellpadding='0'>" +
+                    "<tr style='font-family:Arial; font-size:9px'>" +
+                      "<td style='width:100px'>Fecha recepci&oacute;n</td>" +
+                      "<td>&nbsp;</td>" +
+                      "<td>" +diasSemana[f.getDay()] +", " +f.getDate() +" de " +meses[f.getMonth()] +" de " +f.getFullYear() +
+                      "</td>" +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>                    " +
+                      "<td align='right' style='width:100px'>Hora de Recepci&oacute;n</td>" +
+                      "<td style='width:10px'>:</td>" +
+                      "<td>" +HoraRec +"</td>" +
+                    "</tr>" +
+                    "<tr style='font-family:Arial; font-size:9px'>" +
+                      "<td>Fecha entrega</td>" +
+                      "<td>&nbsp;</td>" +
+                      "<td> " +diasSemana[f2.getDay()] +", " +f2.getDate() +" de " +meses[f2.getMonth()] +" de " +f2.getFullYear() +"</td>" +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>                    " +
+                      "<td align='right' style='width:100px'>Hora de Entrega</td>" +
+                      "<td style='width:10px'>:</td>" +
+                      "<td>" +HoraEnt +"</td>" +
+                    "</tr>" +
+                    "<tr style='font-family:Arial; font-size:9px'>" +
+                      "<td>Agencia</td>" +
+                      "<td>&nbsp;</td> " +
+                      "<td>" +nombre_sucursal +"</td>" +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>                    " +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>" +
+                    "</tr>" +
+                    "<tr style='font-family:Arial; font-size:9px'>" +
+                      "<td>Direcci&oacute;n</td>" +
+                      "<td>&nbsp;</td>" +
+                      "<td> " +impdirAgencia +"</td>" +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>                    " +
+                      "<td style='width:100px'>&nbsp;</td>" +
+                      "<td style='width:10px'>&nbsp;</td> " +
+                      "<td>&nbsp;</td>" +
+                    "</tr>" +
+                    "<tr style='font-family:Arial; font-size:9px'>" +
+                      "<td>Secci&oacute;n</td>" +
+                      "<td>:</td>" +
+                      "<td>" +impSeccion +"</td>" +
+                      "<td style='width:100px'>Tipo Trabajo</td>" +
+                      "<td style='width:10px'>:</td>" +
+                      "<td>" +impTrabajo +"</td>" +
+                      "<td style='width:100px'>Cup&oacute;n</td>" +
+                      "<td style='width:10px'>:</td>" +
+                      "<td>" +impCupon +"</td>   " +
+                    "</tr>   " +
+                  "</table>" +
+                "</td>   " +
+              "</tr>   " +
+              "<tr style='font-family:Arial; font-size:11px; background-color: #cccccc'>" +
+                "<td><b>DATOS CLIENTE:</b></td>" +
+              "</tr>" +
       "<tr> " +
       "<td> " +
       "<table style='width:100%;' cellspacing='0' cellpadding='0'>" +
@@ -14862,8 +14817,9 @@ function formatoRep02() {
       impcnCliente +
       "</td>    " +
       "</tr>    " +
-      "<tr></tr>" +
+      "<tr>     " +
       impDocumentoCliente +
+      "</tr>    " +
       "<tr style='font-family:Arial; font-size:9px'>" +
       "<td >Direcci&oacute;n</td>" +
       "<td >:</td>" +
@@ -15141,6 +15097,7 @@ function formatoRep02() {
       "</table>" +
       "</div>  " +
       "<p style='page-break-before: always'>" +
+      "</p>    " +
       "<table style='width:100%' cellspacing='0' cellpadding='0'>" +
       "<tr style='font-family:Arial; font-size:11px'>" +
       "<td>Orden de Trabajo N&ordm;  " +
@@ -15153,7 +15110,8 @@ function formatoRep02() {
       "</td>   " +
       "</tr>   " +
       "</table>" +
-      "</td></tr><tr>" +
+      /* "</td></tr><tr>" + */
+      "<tr>" +
       "<td>" +
       "<table style='width:100%' cellspacing='0' cellpadding='0'>" +
       "<tr>" +
@@ -15282,13 +15240,17 @@ function formatoRep02() {
       "<td style='text-align:center;font-family:Arial; font-size:11px'>FIRMA DEL T&Eacute;CNICO</td>" +
       "</tr>   " +
       "</table>" +
-      "</p>    " +
+     /*  "</p>    " + */
+      "</td>   " +
+      "</tr>   " +
+      /* "</div>  " + */
+      "<div style='position: absolute; left: 10px; bottom: 0'>" +
+      piePag; //+
+      /* "</div>" +
       "</body> " +
-      "</html> ";
+      "</html> "; */
 
     //  window.myalert("<center><i class=\"fa fa-exclamation-print\"></i> IMPRESION</center>", htmlReporte);
-
-    kendo.ui.progress($("#lector_barrasScreen"), false);
 
     /* window.open(
             cordova.plugins.printer.print(
@@ -15304,22 +15266,88 @@ function formatoRep02() {
                 kendo.ui.progress($("#lector_barrasScreen"), false);
             }
                             ), '_blank'); */
-    cordova.plugins.printer.print(
+     /* cordova.plugins.printer.print(
       htmlReporte,
       {
         graystyle: true,
       },
       function (msg) {},
       function (msg) {}
-    );
+    );  */
+    var options = {    font: {        size: 22,        italic: true,        align: 'center'    },    header: {        height: '6cm',        label: {            text: "\n\nDie Freuden",            font: {                bold: true,                size: 37,                align: 'center'            }        }    },    footer: {        height: '4cm',        label: {            text: 'Johann Wolfgang von Goethe, 1749-1832, deutscher Dichter, Naturforscher',            font: { align: 'center' }        }    }};
+    setTimeout(function () {
+        cordova.plugins.printer.print(htmlReporte, options);
+        
+    }, 5000);
+
+    setTimeout(function () {
+        kendo.ui.progress($("#lector_barrasScreen"), false);
+        jsRemoveWindowLoad();
+    }, 10000);
+    
+    return "O";
   } catch (a) {
-    kendo.ui.progress($("#lector_barrasScreen"), false);
+    //kendo.ui.progress($("#lector_barrasScreen"), false);
     window.myalert(
       '<center><i class="fa fa-exclamation-triangle"></i> ERROR</center>',
       a
     );
+    jsRemoveWindowLoad()
     return "";
   }
+}
+function jsRemoveWindowLoad() {
+  // eliminamos el div que bloquea pantalla
+  $("#WindowLoad").remove();
+
+}
+
+function jsShowWindowLoad(mensaje) {
+  //eliminamos si existe un div ya bloqueando
+  jsRemoveWindowLoad();
+
+  //si no enviamos mensaje se pondra este por defecto
+  if (mensaje === undefined) mensaje = "Procesando la información, Espere por favor";
+
+  //centrar imagen gif
+  height = 20;//El div del titulo, para que se vea mas arriba (H)
+  var ancho = 0;
+  var alto = 0;
+
+  //obtenemos el ancho y alto de la ventana de nuestro navegador, compatible con todos los navegadores
+  if (window.innerWidth == undefined) ancho = window.screen.width;
+  else ancho = window.innerWidth;
+  if (window.innerHeight == undefined) alto = window.screen.height;
+  else alto = window.innerHeight;
+
+  //operación necesaria para centrar el div que muestra el mensaje
+  var heightdivsito = alto/2 - parseInt(height)/2;//Se utiliza en el margen superior, para centrar
+
+ //imagen que aparece mientras nuestro div es mostrado y da apariencia de cargando
+  imgCentro = "<div style='text-align:center;height:" + alto + "px;'><div  style='color:#000;margin-top:" + heightdivsito + "px; font-size:20px;font-weight:bold'>" + mensaje + "</div>"/*<img  src='img/load.gif'>*/+"</div>";
+
+      //creamos el div que bloquea grande------------------------------------------
+      div = document.createElement("div");
+      div.id = "WindowLoad"
+      div.style.width = ancho + "px";
+      div.style.height = alto + "px";
+      $("body").append(div);
+
+      //creamos un input text para que el foco se plasme en este y el usuario no pueda escribir en nada de atras
+      input = document.createElement("input");
+      input.id = "focusInput";
+      input.type = "text"
+
+      //asignamos el div que bloquea
+      $("#WindowLoad").append(input);
+
+      //asignamos el foco y ocultamos el input text
+      $("#focusInput").focus();
+      $("#focusInput").hide();
+
+      //centramos el div del texto
+      $("#WindowLoad").html(imgCentro);
+
 }
 
 function llenaTipMante(kilom, selMantenimiento) {
@@ -15510,7 +15538,7 @@ Fecha: 07/11/2017
 Detalle: Imprime HTML
 Autor: RRP
 --------------------------------------------------------------------*/
-function imprimeInfo_1(tipoImp) {
+async function imprimeInfo_1(tipoImp) {
   cierraControlGral();
 
   //kendo.ui.progress($("#lector_barrasScreen"), true);
@@ -15522,10 +15550,15 @@ function imprimeInfo_1(tipoImp) {
     generarOrdenPDF(document.getElementById("numOT_2").value, "P");
     // Prefactura
     txtHTML = formatoRep01();
+    
   } else {
+    console.error("pruebas",tipoImp)
     if (tipoImp == "O") {
       // OT
-      txtHTML = formatoRep02();
+      txtHTML = "O"; 
+      jsShowWindowLoad();
+      kendo.ui.progress($("#lector_barrasScreen"), true);
+      txtHTML= PruebasformatoRep02();     
     } else {
       // acta
       txtHTML = formatoRep03();
@@ -15533,7 +15566,7 @@ function imprimeInfo_1(tipoImp) {
   }
 
   //   window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> " + tipoImp + "</center>", txtHTML);
-
+  
   if (txtHTML == "") {
     kendo.ui.progress($("#lector_barrasScreen"), false);
     window.myalert(
@@ -15542,19 +15575,16 @@ function imprimeInfo_1(tipoImp) {
     );
     return;
   }
+  //window.myalert("<center><i class=\"fa fa-exclamation-triangle overflow-y: scroll;\"></i> " + tipoImp + "</center>", txtHTML);
+try {
+  if (txtHTML != "O") {
+    var options = {    font: {        size: 22,        italic: true,        align: 'center'    },    header: {        height: '6cm',        label: {            text: "\n\nDie Freuden",            font: {                bold: true,                size: 37,                align: 'center'            }        }    },    footer: {        height: '4cm',        label: {            text: 'Johann Wolfgang von Goethe, 1749-1832, deutscher Dichter, Naturforscher',            font: { align: 'center' }        }    }};
+    cordova.plugins.printer.print(txtHTML, options);
+  } 
+} catch (error) {
+  console.error("perueba",error);
 
-  cordova.plugins.printer.print(
-    txtHTML,
-    {
-      graystyle: true,
-    },
-    function (msg) {
-      kendo.ui.progress($("#lector_barrasScreen"), false);
-    },
-    function (msg) {
-      kendo.ui.progress($("#lector_barrasScreen"), false);
-    }
-  );
+}
 
   kendo.ui.progress($("#lector_barrasScreen"), false);
   // precarga *********************************************************************************************
@@ -15849,8 +15879,8 @@ function firmaDigitalOT() {
   dialogfirmaDigitalOT.data("kendoDialog").open();
   canvas = document.getElementById("signature-pad");
   signaturePad = new SignaturePad(canvas, {
-    minWidth: 0.5,
-    maxWidth: 0.5,
+    minWidth: 2,
+    maxWidth: 2,
     dotSize: 1,
     backgroundColor: "rgb(255, 255, 255)",
   });
@@ -15896,8 +15926,8 @@ function firmaDigitalOTAS() {
   dialogfirmaOTAS.data("kendoDialog").open();
   canvas = document.getElementById("signature-padAS");
   signaturePad = new SignaturePad(canvas, {
-    minWidth: 0.5,
-    maxWidth: 0.5,
+    minWidth: 2,
+    maxWidth: 2,
     dotSize: 1,
     backgroundColor: "rgb(255, 255, 255)",
   });
@@ -16090,7 +16120,7 @@ function consultarPacks(inforOt, tipo) {
         }
       },
       error: function (err) {
-        alert("03" + err);
+        console.log("03" + inspeccionar(err));
         kendo.ui.progress($("#lector_barrasScreen"), false);
         // loading
         document.getElementById("divLoading").innerHTML = "";

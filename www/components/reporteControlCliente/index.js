@@ -478,8 +478,8 @@ function firmaDigitalOTCC() {
     dialogfirmaDigitalOTCC.data("kendoDialog").open();
     canvas = document.getElementById('signature-padCC');
     signaturePad = new SignaturePad(canvas, {
-        minWidth: 0.5,
-        maxWidth: 0.5,
+        minWidth: 2,
+        maxWidth: 2,
         dotSize: 1,
         backgroundColor: 'rgb(255, 255, 255)'
     });
@@ -526,8 +526,8 @@ function firmaDigitalOTCCJT() {
     dialogfirmaOTJT.data("kendoDialog").open();
     canvas = document.getElementById('signature-padCCA');
     signaturePad = new SignaturePad(canvas, {
-        minWidth: 0.5,
-        maxWidth: 0.5,
+        minWidth: 2,
+        maxWidth: 2,
         dotSize: 1,
         backgroundColor: 'rgb(255, 255, 255)'
     });

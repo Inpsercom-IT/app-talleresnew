@@ -18,6 +18,7 @@ Autor: RRP.
 // Valores por default
 // --------------------------------------------------------------------------
 var validaProceAgendaEV = true;
+var ev_arrPago = ["EFECTIVO", "TRANSFERECIA", "TARJETA DEBITO", "TARJETA CREDITO" ];
 // --------------------------------------------------------------------------
 
 app.nuevoveh = kendo.observable({
@@ -26,6 +27,12 @@ app.nuevoveh = kendo.observable({
       llamarColorTexto(".w3-text-red");
       llamarNuevoestilo("lydEntrega");
       var arrLi = ["li_ev1","liev2","li_ev4", "li_ev6","li_ev5","li_ev8","liev3"];
+      document.getElementById("EV_ocultatipopago").style.display = "none";
+      try {
+        localStorage.setItem("idDetalle","");
+      } catch (error) {
+        
+      }
       var idLi = 1;
       for (var x = 0; x < arrLi.length; x++) {
           document.getElementById(arrLi[x]).removeAttribute("style");
@@ -51,7 +58,7 @@ app.nuevoveh = kendo.observable({
 
 
         }
-
+        
     },
     afterShow: function () { }
 });
@@ -82,6 +89,31 @@ var bolImprimeEV = true;
 
 var pregParVeh = [];
 
+function cbo_tipoPago(idCombo, arrCombo, selItem, divCombo) {
+    var cboAgenciaHTML =
+      "<p><select id='" +
+      idCombo +
+      "' class='w3-input w3-border textos' onchange='EV_tipoDePago(this.value)'>";
+    for (var i = 0; i < arrCombo.length; i++) {
+      if (selItem == arrCombo[i]) {
+        cboAgenciaHTML +=
+          "<option  value='" +
+          arrCombo[i] +
+          "' selected>" +
+          arrCombo[i] +
+          "</option>";
+      } else {
+        cboAgenciaHTML +=
+          "<option  value='" + arrCombo[i] + "'>" + arrCombo[i] + "</option>";
+      }
+    }
+    cboAgenciaHTML += "</select></p>";
+    document.getElementById(divCombo).innerHTML = cboAgenciaHTML;
+  }
+
+  function EV_tipoDePago(selTipoPago) {
+    alert(selTipoPago);
+  }
 
 function verFormDesdeAgendaEV(urlAgendaEV) {
     //  window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", urlAgendaEV);
@@ -3149,7 +3181,9 @@ function registrarEV() {
                     return;
                 }
             }
-
+            if (localStorage.getItem("idDetalle").toString() != "") {
+                GuardarFormaPagoSQL(localStorage.getItem("idDetalle").toString(), document.getElementById("ev_fpago").value, localStorage.getItem("ls_usulog").toLocaleString() );
+            }
             $.ajax({
                 url: Url,
                 type: "POST",
@@ -3488,6 +3522,8 @@ function captureImagenEV() {
 
         //navigator.device.capture.captureImage(onSuccess01, onFail01, { limit: 1 });
         //navigator.device.capture.captureImage(captureSuccessEV, onFail01, { limit: 1 });
+        /*selecciona imagen*/
+               
         var versionTabletEV =navigator.appVersion;
         if (versionTabletEV.split(';')[1].trim() == "Android 10" && versionTabletEV.split(';')[2].includes("Lenovo TB-X306X") ) {
             navigator.camera.getPicture(onSuccess01, onFail01, {
@@ -3519,8 +3555,16 @@ function captureImagenEV() {
         kendo.ui.progress($("#nuevovehScreen"), false);
         document.getElementById("playVideo_ev").innerHTML = "";
         document.getElementById('fileOT_ev').value = "";
-        //  alert(errorCam);
+          alert(errorCam);
     }
+}
+function onSuccess(imageURI) {
+    var image = document.getElementById('myImage');
+    image.src = imageURI;
+}
+
+function onFail(message) {
+    alert('Failed because: ' + message);
 }
 function captureSuccessEV(mediaFiles) {
     kendo.confirm("<center><h1><i class=\"fa fa-cloud-upload\"></i> SUBIR ARCHIVO</h1><br />Desea guardar el archivo en el Repositorio ?</center>")
@@ -5067,7 +5111,7 @@ function agendaEntrega_2(fechaBusqueda) {
 function objetoVH03(idCelda) {
     var arr_Ag = idCelda.split("|");
     var arr_Inf = arr_Ag[1].split("-");
-
+    document.getElementById("EV_ocultatipopago").style.display = "none";
     var UrlEntregasVIN = localStorage.getItem("ls_url2").toLocaleString() + "/Services/VH/Vehiculos.svc/vh03FacturasGet/4,json" + ";" +
    localStorage.getItem("ls_idempresa").toLocaleString() + ";" +
    localStorage.getItem("ls_ussucursal").toLocaleString() + ";" +
@@ -5101,6 +5145,7 @@ function objetoVH03(idCelda) {
                         infEntregasVIN = (JSON.parse(data.vh03FacturasGetResult)).tvh03;
                         document.getElementById("2agendaEntregaE1").innerHTML = "";
                         //window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", inspeccionar(infEntregasVIN[0]));
+                        ConsultaKiaMax(infEntregasVIN[0].id_orden_facturacion.toString());
                         verForm(infEntregasVIN[0], false);
                     }
                 }
@@ -5127,4 +5172,69 @@ function objetoVH03(idCelda) {
     //  return infEntregasVIN;
 
 
+}
+
+function ConsultaKiaMax(idordenfacturacion) {
+    try {
+        localStorage.setItem("idDetalle","");
+        var paramFP = {
+                "id": idordenfacturacion
+        }; 
+        var UrlFP = "https://biss.kiaecuador.com.ec/api/RdnFctL/VmCsKMx"; //"https://play.google.com/store/apps/details?id="+bundle;
+        $.ajax({
+                url: UrlFP,
+                type: "POST",
+                async: false,
+                dataType: "json",
+                data : JSON.stringify(paramFP),
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                success: function (datas) {
+                    if (datas.bdt1==true) {
+                        localStorage.setItem("idDetalle",datas.id);
+                        document.getElementById("EV_ocultatipopago").style.display = "initial";
+                        cbo_tipoPago("ev_fpago", ev_arrPago, ev_arrPago[0], "ev_tipoPago");
+                    }
+                },
+                error: function (err) { alert(inspeccionar(err)); alert("Error en servicio clientes");
+            } 
+            });
+        
+    } catch (e) {
+        alert(e);
+    }
+}
+
+function GuardarFormaPagoSQL(idDetalleFP,formaPagoFP,nombreUsuario) {
+    try {
+        
+        var paramFP = {
+                "id": idDetalleFP,
+                "dt1":formaPagoFP,
+                "dt2":nombreUsuario
+        }; 
+        var UrlFP = "https://biss.kiaecuador.com.ec/api/DtVhCtz/VmActFrmPg"; //"https://play.google.com/store/apps/details?id="+bundle;
+        $.ajax({
+                url: UrlFP,
+                type: "POST",
+                async: false,
+                dataType: "json",
+                data : JSON.stringify(paramFP),
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                success: function (datas) {
+                    if (datas.bdt1==true) {
+                        localStorage.setItem("id",datas.id);
+                        document.getElementById("EV_ocultatipopago").style.readOnly = true;
+                    }
+                },
+                error: function (err) { alert(inspeccionar(err)); alert("Error en servicio clientes");
+            } 
+            });
+        
+    } catch (e) {
+        alert(e);
+    }
 }

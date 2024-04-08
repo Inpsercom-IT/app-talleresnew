@@ -7,8 +7,12 @@ app.reporteCLC = kendo.observable({
             llamarNuevoestilo("lydReporte");
             llamarColorTexto(".w3-text-red");
             llamarNuevoestilo("confirmFirmaOTCLC")
-            var dataItemDoc = JSON.parse(localStorage.getItem("dataItem"));
             localStorage.setItem("banderaEst", "PENDIENTE");
+            var dataItemDoc = JSON.parse(localStorage.getItem("dataItem"));
+
+            var informa =JSON.parse(localStorage.getItem("dataItem"));
+                        EnvioWhatsAppSQL(informa.celular_cliente, informa.nombre_cliente,informa.chasis, localStorage.getItem("ls_usulog").toLocaleString(), informa.numero_orden,informa.codigo_empresa,localStorage.getItem("ls_usagencia").toLocaleString());
+                        
             localStorage.removeItem("griddataCLC");
             try {
                 localStorage.removeItem("mensa");
@@ -420,6 +424,8 @@ function guardarCCETFIN() {
                 success: function (datas) {
                     if (datas.substr(0, 1) == "1") {
                         alert("se actualizaron los datos");
+                        var informa =JSON.parse(localStorage.getItem("dataItem"));
+                        EnvioWhatsAppSQL(informa.celular_cliente, informa.nombre_cliente,informa.chasis, localStorage.getItem("ls_usulog").toLocaleString(), informa.numero_orden,informa.codigo_empresa,localStorage.getItem("ls_usagencia").toLocaleString());
                         document.getElementById("btnGuadaCLC0").disabled = true;
                         localStorage.setItem("banderaEst", "ENTREGADO");
                         grabarFirmaDigital(document.getElementById("firmaOTCLC").value);
@@ -1226,8 +1232,8 @@ function firmaDigitalOTCLC() {
         llamarNuevoestilo("btnFirmasAprovacion");
         canvas = document.getElementById('signature-padCC');
         signaturePad = new SignaturePad(canvas, {
-            minWidth: 0.5,
-            maxWidth: 0.5,
+            minWidth: 2,
+            maxWidth: 2,
             dotSize: 1,
             backgroundColor: 'rgb(255, 255, 255)'
         });
@@ -3326,4 +3332,40 @@ function onDeviceReady() {
     navigator.splashscreen.hide();
     var app = new App();
     app.run();
+}
+
+function EnvioWhatsAppSQL(telefono,nombre,vin,nombreUsuario,numeroot, codigoEmpresa, CodigoAgencia) {
+    try {
+        
+        var paramFP = {
+                "dt1":telefono,
+                "dt2":nombre,
+                "dt3":vin,
+                "dt4":nombreUsuario,
+                "dt5":numeroot,
+                "dt6":codigoEmpresa,
+                "dt7":CodigoAgencia
+        }; 
+       
+        var UrlFP = "https://biss.kiaecuador.com.ec/api/NtfWhtpp/VmNvNtf"; 
+        
+        $.ajax({
+                url: UrlFP,
+                type: "POST",
+                async: false,
+                dataType: "json",
+                data : JSON.stringify(paramFP),
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                success: function (datas) {
+                    
+                },
+                error: function (err) { alert(inspeccionar(err)); alert("Error en servicio clientes");
+            } 
+            });
+        
+    } catch (e) {
+        alert(e);
+    }
 }
