@@ -4,21 +4,19 @@
 
 // cel: 340 x 640
 
-//alert(screen.width + " x " + screen.height)
-
 localStorage.setItem("ls_dimensionW", screen.width );
 localStorage.setItem("ls_dimensionH", screen.height);
 verVersion();
 var UrlCitasTaller = "";
 var UrlFacturaSGC = "";
 var UrlGarantiaSql = "";
-var wsPrincipal = "http://23.101.135.126:8092/appk_aekia";//"http://200.31.10.92:8092/appk_aekia";//"http://23.101.135.126:8092/appk_aekia";
+var wsPrincipal = "http://200.31.10.92:8092/appk_aekia";//"http://200.31.10.92:8092/appk_aekia";//"http://23.101.135.126:8092/appk_aekia";
 var htmlFormatoEV = "";
 var ambiente
 //anterior "http://186.71.21.170:8089";
 
 
-http://200.31.10.92:8092/appk_aekia
+//http://200.31.10.92:8092/appk_aekia
 
 //var wsInfoVehiculo = "http://186.71.21.170:8089/biss.sherloc/Services/SL/Sherloc/Sherloc.svc";
 

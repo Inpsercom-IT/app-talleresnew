@@ -3535,6 +3535,13 @@ function captureImagenEV() {
             });
         } else {
             navigator.device.capture.captureImage(captureSuccessEV, onFail01, { limit: 1 });
+            navigator.camera.getPicture(onSuccess01, onFail01, {
+                quality: 100,
+                targetWidth: 800,
+                targetHeight: 800,
+                destinationType: Camera.DestinationType.FILE_URI,
+                correctOrientation: true
+            });
         }
         /* navigator.camera.getPicture(onSuccess01, onFail01, {
             quality: 100,
@@ -5145,7 +5152,7 @@ function objetoVH03(idCelda) {
                         infEntregasVIN = (JSON.parse(data.vh03FacturasGetResult)).tvh03;
                         document.getElementById("2agendaEntregaE1").innerHTML = "";
                         //window.myalert("<center><i class=\"fa fa-exclamation-triangle\"></i> ERROR</center>", inspeccionar(infEntregasVIN[0]));
-                        ConsultaKiaMax(infEntregasVIN[0].id_orden_facturacion.toString());
+                        //ConsultaKiaMax(infEntregasVIN[0].id_orden_facturacion.toString());
                         verForm(infEntregasVIN[0], false);
                     }
                 }

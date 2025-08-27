@@ -1107,21 +1107,32 @@ function MIshowHint(str) {
     // precarga *********************************************************************************************
   }, 2000);
 }
+function errorPer() {
+  console.log('Camera permission is not turned on');
+}
 
+function successPer(status) {
+  console.log(status);
+  if( !status.hasPermission ) error(error);
+}
+    
 function captureImagen() {
   try {
+    var permissions = cordova.plugins.permissions;
+    permissions.requestPermission(permissions.CAMERA, successPer, errorPer);
+
     navigator.device.capture.captureImage(captureSuccess, captureError, {
       limit: 1,
     });
 
     ///*captura imagen*/
-    /* navigator.camera.getPicture(captureSuccessImg, captureError, {
+    navigator.camera.getPicture(captureSuccessImg, captureError, {
             quality: 100,
             targetWidth: 800,
             targetHeight: 800,
             destinationType: Camera.DestinationType.FILE_URI,
             correctOrientation: true
-        }); */
+        });
   } catch (error) {
     console.log(error);
   }
@@ -4031,7 +4042,6 @@ function TraerInformacion(responseText, tipo) {
             document.getElementById("divLoading").innerHTML = "";
             // Borrar imagen de placa
             document.getElementById("smallImage").style.display = "none";
-
             window.myalert(
               '<center><i class="fa fa-exclamation-triangle"></i>13 ALERTA</center>',
               "No existen datos del \nC\u00F3digo: <b>" + responseText + "</b>"
@@ -6188,6 +6198,7 @@ function ConsultarEM(emvin) {
 
           var tableEM = "<table>";
           var emKM = inforEM[0].codigo / 1000;
+          
           for (var i = 0; i < 35; i++) {
             tableEM +=
               "<tr><td class='clase'><input type='text' value='" +
@@ -6214,6 +6225,7 @@ function ConsultarEM(emvin) {
           tableContenedor += "<td>&nbsp;&nbsp;</td>";
           tableContenedor += "<td>";
           tableEM = "<table>";
+          
           emKM = 180;
           for (var i = 0; i < 35; i++) {
             tableEM +=
@@ -6249,6 +6261,7 @@ function ConsultarEM(emvin) {
           var bolVerif = false;
 
           for (var i = 0; i < inforEM.length; i++) {
+           
             if (i < 70) {
               if (inforEM[i].validacion == true) {
                 document.getElementById(
@@ -8460,6 +8473,8 @@ function generarOrdenPDF(strArchivo, tipoPDF) {
     var Url =
       localStorage.getItem("ls_url2").toLocaleString() +
       "/Services/TL/Taller.svc/creaPdf_2";
+      console.log("params",params)
+      console.log("Url",Url)
     $.ajax({
       url: Url,
       type: "POST",
@@ -8470,6 +8485,7 @@ function generarOrdenPDF(strArchivo, tipoPDF) {
       },
       success: function (data) {
         try {
+          console.log("data",data)
           var respMail = JSON.stringify(data);
 
           if (respMail.includes("Succes")) {
