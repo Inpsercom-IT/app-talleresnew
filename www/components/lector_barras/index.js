@@ -1117,14 +1117,17 @@ function successPer(status) {
 }
     
 function captureImagen() {
-  try {
-    var permissions = cordova.plugins.permissions;
-    permissions.requestPermission(permissions.CAMERA, successPer, errorPer);
-
-    navigator.device.capture.captureImage(captureSuccess, captureError, {
+  
+    /* var permissions = cordova.plugins.permissions;
+    permissions.requestPermission(permissions.CAMERA, successPer, errorPer); */
+    try {
+      navigator.device.capture.captureImage(captureSuccess, captureError, {
       limit: 1,
     });
-
+    } catch (error) {
+      
+    }
+    try {
     ///*captura imagen*/
     navigator.camera.getPicture(captureSuccessImg, captureError, {
             quality: 100,
@@ -1271,7 +1274,6 @@ function uploadVideo(mediaFile) {
       name = mediaFile.name;
 
     var videoURI = path;
-
     var vidPorcentaje = 80;
     var vidAlto = (screen.width * 50) / 100;
     var vidAncho = (screen.width * 80) / 100;
@@ -1296,7 +1298,7 @@ function uploadVideo(mediaFile) {
     });
 
     hhmm = hhmm.replace(":", "");
-    var arrExtension = videoURI.split(".");
+    var arrExtension = name.split("."); //videoURI.split(".");
 
     var camposOT = parametrosOTCompleto();
     var pathServidorOT =
@@ -6226,7 +6228,7 @@ function ConsultarEM(emvin) {
           tableContenedor += "<td>";
           tableEM = "<table>";
           
-          emKM = 180;
+          //emKM = 180;
           for (var i = 0; i < 35; i++) {
             tableEM +=
               "<tr><td class='clase'><input type='text' value='" +
@@ -6246,7 +6248,7 @@ function ConsultarEM(emvin) {
               emKM +
               "000x' class='fa fa-times' aria-hidden='true' style='color:red; display:none;width: 30%;'></i></td></tr>";
 
-            emKM = emKM + 5;
+            emKM = emKM + inforEM[0].codigo / 1000;
           }
           tableEM += " </table>";
 
