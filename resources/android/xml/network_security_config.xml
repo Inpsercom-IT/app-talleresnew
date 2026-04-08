@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <!-- Preserve legacy HTTP (distribuidor/intranet) behavior -->
+  <base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+      <certificates src="system" />
+    </trust-anchors>
+  </base-config>
+
+  <!-- Limit this custom trust to the biss domain only -->
+  <domain-config cleartextTrafficPermitted="false">
+    <domain includeSubdomains="false">biss.kiaecuador.com.ec</domain>
+    <trust-anchors>
+      <!-- Custom intermediate CA packaged with the app -->
+      <certificates src="@raw/biss_intermediate" />
+      <!-- Keep system CAs as well -->
+      <certificates src="system" />
+    </trust-anchors>
+  </domain-config>
+</network-security-config>
