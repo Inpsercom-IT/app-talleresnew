@@ -17,10 +17,25 @@ app.login = kendo.observable({
      //   var w = $(window).width();
      // h =  (h * 50) / 100;
      //w =   (w * 80) / 100;
-     verVersion();
-        llamarNuevoestilo("btnEmpresa");
-        llamarNuevoestiloIcon("icnEmpresa");
-        llamarNuevoestiloBorde("brdEmpresa");
+        var applyBranding = function () {
+            llamarNuevoestilo("btnEmpresa");
+            llamarNuevoestiloIcon("icnEmpresa");
+            llamarNuevoestiloBorde("brdEmpresa");
+        };
+
+        // If already loaded, apply immediately. Otherwise wait for verVersion() to finish.
+        try {
+            var rgb = JSON.parse(localStorage.getItem("versionappRGB"));
+            if (rgb && rgb.dt5 && rgb.dt1 && rgb.dt6) {
+                applyBranding();
+            } else {
+                window.addEventListener("versionappRGBReady", applyBranding, { once: true });
+            }
+        } catch (e) {
+            window.addEventListener("versionappRGBReady", applyBranding, { once: true });
+        }
+
+        verVersion();
        cierraControlGral();
 
         //localStorage.setItem("ls_dimensionW", screen.width);

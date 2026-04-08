@@ -620,36 +620,131 @@ function verVersion(){
                 "dt2": "APP MOVIL"
         };
         var Url = "https://biss.kiaecuador.com.ec/api/MnMrE/VmSMMnE"; //"https://play.google.com/store/apps/details?id="+bundle;
+        // Prefer native HTTP on Android (avoids WebView/XHR networking issues)
+        var hasNativeHttp = typeof cordova !== "undefined" &&
+            cordova.plugin &&
+            cordova.plugin.http &&
+            typeof cordova.plugin.http.post === "function";
+
+        if (hasNativeHttp) {
+            var doPost = function () {
+                cordova.plugin.http.setDataSerializer("json");
+                cordova.plugin.http.setRequestTimeout(30);
+                cordova.plugin.http.setFollowRedirect(true);
+
+                cordova.plugin.http.post(
+                    Url,
+                    param,
+                    { "Content-Type": "application/json;charset=UTF-8" },
+                    function (resp) {
+                        try {
+                            var datas = resp && resp.data ? JSON.parse(resp.data) : null;
+                            localStorage.setItem("versionapp", JSON.stringify(datas));
+                            var objaux = datas ? {
+                                dt1: hexToRgb(datas.dt1),
+                                dt5: hexToRgb(datas.dt5),
+                                dt6: hexToRgb(datas.dt6),
+                            } : null;
+                            if (!objaux || !objaux.dt1 || !objaux.dt5 || !objaux.dt6) {
+                                objaux = safeGetVersionappRGB();
+                            }
+                            localStorage.setItem("versionappRGB", JSON.stringify(objaux));
+                            window.dispatchEvent(new Event("versionappRGBReady"));
+                        } catch (e) {
+                            alert(e);
+                        }
+                    },
+                    function (err) {
+                        alert(inspeccionar(err));
+                        alert("Error en servicio clientes");
+                        try {
+                            localStorage.setItem("versionappRGB", JSON.stringify(safeGetVersionappRGB()));
+                        } catch (e) {}
+                        window.dispatchEvent(new Event("versionappRGBReady"));
+                    }
+                );
+            };
+
+            // Android <=13: pin to packaged intermediate certificate (www/certificates/*.cer)
+            if (!window.__httpTrustModePinned) {
+                cordova.plugin.http.setServerTrustMode(
+                    "pinned",
+                    function () {
+                        window.__httpTrustModePinned = true;
+                        doPost();
+                    },
+                    function () {
+                        // If trust mode setup fails, still try request
+                        doPost();
+                    }
+                );
+            } else {
+                doPost();
+            }
+        } else {
+            // If we're on-device but plugin isn't ready yet, defer instead of falling back to WebView/XHR.
+            if (typeof cordova !== "undefined") {
+                document.addEventListener("deviceready", function () {
+                    try { verVersion(); } catch (e) {}
+                }, { once: true });
+                return;
+            }
             $.ajax({
                 url: Url,
                 type: "POST",
                 async: false,
                 dataType: "json",
-                data : JSON.stringify(param),
-                //Content-Type: application/json
+                data: JSON.stringify(param),
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    "Content-Type": "application/json;charset=UTF-8"
                 },
                 success: function (datas) {
                     localStorage.setItem("versionapp", JSON.stringify(datas));
-                    var objaux = datas? {
-                        dt1:hexToRgb(datas.dt1),
-                        dt5:hexToRgb(datas.dt5),
-                        dt6:hexToRgb(datas.dt6),
-                    }:{};
+                    var objaux = datas ? {
+                        dt1: hexToRgb(datas.dt1),
+                        dt5: hexToRgb(datas.dt5),
+                        dt6: hexToRgb(datas.dt6),
+                    } : {};
                     localStorage.setItem("versionappRGB", JSON.stringify(objaux));
+                    window.dispatchEvent(new Event("versionappRGBReady"));
                 },
-                error: function (err) { alert(inspeccionar(err)); alert("Error en servicio clientes");
-            } 
+                error: function (err) {
+                    alert(inspeccionar(err));
+                    alert("Error en servicio clientes");
+                    try {
+                        localStorage.setItem("versionappRGB", JSON.stringify(safeGetVersionappRGB()));
+                    } catch (e) {}
+                    window.dispatchEvent(new Event("versionappRGBReady"));
+                }
             });
+        }
         
     } catch (e) {
         alert(e);
     }
 }
+function safeGetVersionappRGB() {
+    try {
+        var obj = JSON.parse(localStorage.getItem("versionappRGB"));
+        if (!obj || !obj.dt1 || !obj.dt5 || !obj.dt6) {
+            return {
+                dt1: { r: 255, g: 255, b: 255 },
+                dt5: { r: 187, g: 22, b: 43 }, // Kia red-ish default
+                dt6: { r: 51, g: 51, b: 51 }
+            };
+        }
+        return obj;
+    } catch (e) {
+        return {
+            dt1: { r: 255, g: 255, b: 255 },
+            dt5: { r: 187, g: 22, b: 43 },
+            dt6: { r: 51, g: 51, b: 51 }
+        };
+    }
+}
 function llamarColorTexto(menu){
     var elements = Array.prototype.slice.call(document.querySelectorAll(menu));
-    var rgbnuevo = JSON.parse(localStorage.getItem("versionappRGB"));
+    var rgbnuevo = safeGetVersionappRGB();
   // Loop over each element....
   if(elements.length)
   elements.forEach(function(el){
@@ -658,7 +753,7 @@ function llamarColorTexto(menu){
 }
 function llamarColorBotonGeneral(menu){
     var elements = Array.prototype.slice.call(document.querySelectorAll(menu));
-    var rgbnuevo = JSON.parse(localStorage.getItem("versionappRGB"));
+    var rgbnuevo = safeGetVersionappRGB();
   // Loop over each element....
   if(elements.length)
   elements.forEach(function(el){
@@ -670,7 +765,7 @@ function llamarColorBotonGeneral(menu){
 function llamarNuevoestiloIcon(menu){
     
     try {
-        var rgbnuevo = JSON.parse(localStorage.getItem("versionappRGB"));
+        var rgbnuevo = safeGetVersionappRGB();
     if(document.getElementById(menu+"0")){document.getElementById(menu+"0").style.color = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)";}
     if(document.getElementById(menu+"1")){document.getElementById(menu+"1").style.color = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)";}
     if(document.getElementById(menu+"2")){document.getElementById(menu+"2").style.color = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)";}
@@ -712,7 +807,7 @@ function llamarNuevoestiloIconB(menu){
 }
 function llamarNuevoestilo(menu){
     try {
-        var rgbnuevo = JSON.parse(localStorage.getItem("versionappRGB"));
+        var rgbnuevo = safeGetVersionappRGB();
     if(document.getElementById(menu+"0")){
         document.getElementById(menu+"0").style.backgroundColor = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)";
         document.getElementById(menu+"0").style.color = "#ffffff";}
@@ -752,7 +847,7 @@ function llamarNuevoestilo(menu){
 }
 function llamarNuevoestiloBorde(menu){
     try {
-        var rgbnuevo = JSON.parse(localStorage.getItem("versionappRGB"));
+        var rgbnuevo = safeGetVersionappRGB();
     if(document.getElementById(menu+"0")){
         document.getElementById(menu+"0").style.border = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)!important";
         document.getElementById(menu+"0").style.color = "rgba("+rgbnuevo.dt5.r+","+rgbnuevo.dt5.g+","+rgbnuevo.dt5.b+",0.8)!important";}
